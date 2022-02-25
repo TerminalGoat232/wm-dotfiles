@@ -1,9 +1,7 @@
 
 bg_bar_color="#1f1e1c"
 
-# Print a left caret separator
-# @params {string} $1 text color, ex: "#FF0000"
-# @params {string} $2 background color, ex: "#FF0000"
+
 separator() {
   echo -n "{"
   echo -n "\"full_text\":\"Σ\"," # CTRL+Ue0b2
@@ -31,17 +29,7 @@ common() {
   echo -n "\"border_radius\":10"
 }
 
-# mycrypto() {
-#   local bg="#FFD180"
-#   separator $bg $bg_bar_color
-#   echo -n ",{"
-#   echo -n "\"name\":\"id_crypto\","
-#   echo -n "\"full_text\":\" $(/home/terminalgoat/.config/i3status/crypto.py) \","
-#   echo -n "\"color\":\"#000000\","
-#   echo -n "\"background\":\"$bg\","
-#   common
-#   echo -n "},"
-# }
+
 
 myip_public() {
   local bg="#1976D2"
@@ -55,13 +43,13 @@ myip_public() {
 }
 
 myvpn_on() {
-  local bg="#424242" # grey darken-3
+  local bg="#424242" 
   local icon=""
   if [ -d /proc/sys/net/ipv4/conf/proton0 ]; then
-    bg="#E53935" # rouge
+    bg="#E53935" 
     icon=""
   fi
-  separator $bg "#1976D2" # background left previous block
+  separator $bg "#1976D2" 
   bg_separator_previous=$bg
   echo -n ",{"
   echo -n "\"name\":\"id_vpn\","      
@@ -250,10 +238,9 @@ logout() {
   echo -n "}"
 }
 
-# https://github.com/i3/i3/blob/next/contrib/trivial-bar-script.sh
-echo '{ "version": 1, "click_events":true }'     # Send the header so that i3bar knows we want to use JSON:
-echo '['                    # Begin the endless array.
-echo '[]'                   # We send an empty first array of blocks to make the loop simpler:
+echo '{ "version": 1, "click_events":true }'     
+echo '['                 
+echo '[]'
 
 
 (while :;
@@ -261,18 +248,13 @@ do
   echo -n ",["
   core0
   core1
-  #mycrypto
-  # myip_public
-  # #myvpn_on
   myip_local
   disk_usage
   memory
   cpu_usage
-  # meteo
   mydate
   battery0
   volume
-  #systemupdate
   logout
   echo "]"
   sleep 0.1
