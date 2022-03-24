@@ -1,10 +1,10 @@
-
+#some of my stupid i3status bar thingy idk
 bg_bar_color="#1f1e1c"
 
 
 separator() {
   echo -n "{"
-  echo -n "\"full_text\":\"Σ\"," # CTRL+Ue0b2
+  echo -n "\"full_text\":\"Σ\"," 
   echo -n "\"separator\":false,"
   echo -n "\"separator_block_width\":0,"
   echo -n "\"border\":\"$bg_bar_color\","
@@ -78,7 +78,17 @@ disk_usage() {
   echo -n "}"
 
 }
-
+outside_temp(){                                                                                                                                           
+  local bg="#F69273"                                                                                                                                      
+  separator $bg $bg_separator_previous                                                                                                                    
+  echo -n ",{"                                                                                                                                            
+  echo -n "\"name\":\"dfsdfsdf\","                                                                                                                        
+  echo -n "\"background\":\"$bg\","                                                                                                                       
+  echo -n "\"color\":\"#1f1e1c\","                                                                                                                        
+  echo -n "\"full_text\":\" $(curl wttr.in/<ur region>?format=3 | cut -c13-) \","                                                                          
+  common                                                                                                                                                  
+  echo -n "},"                                                                                                                                            
+ }      
 memory() {
   # local bg="#ffb5a1"
   # separator $bg bg_separator_previous
