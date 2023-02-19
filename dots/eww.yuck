@@ -19,7 +19,7 @@
     ))
     
 
-(defwindow ma 
+(defwindow main
 	:stacking "fg" :focusable "false" :screen 1 
 	:geometry (geometry :x -10 :y 50 :width 200 :height 100 :anchor "top right")
 	(music))
