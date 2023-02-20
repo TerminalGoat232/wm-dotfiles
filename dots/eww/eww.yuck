@@ -15,7 +15,7 @@
      (button :class "prev" :onclick `playerctl previous`)
      (button :class "next" :onclick `playerctl next`)
      {title != "" ? " ${dur}  ${title}" : "nothing is playing"}
-     (label :class "artist" :wrap true :limit-width 20 :text artist)
+     (label :class "artist" :wrap true :limit-width 15 :text artist)
     ))
     
 
