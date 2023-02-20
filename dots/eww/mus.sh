@@ -15,8 +15,8 @@ title_and_stuff(){
 	status=""
 	c=${#ttl}
 	if [[ ${zz} == "Paused" ]]; then
-		status="玲⠀⠀⠀⠀怜"
-	else status="玲⠀⠀⠀⠀怜"
+		status="⠀⠀⠀⠀玲⠀⠀  ⠀⠀怜"
+	else status="⠀⠀⠀⠀玲⠀⠀  ⠀⠀怜"
 	fi
 	[[ ${#ttl} -gt 28 ]] && echo ${status} "\n" ${ttl::$c-($c-28)}"...⠀⠀⠀" || { 
 		for (( i=0;i<(28-${c});++i )); do 
@@ -33,13 +33,7 @@ artist(){
 	local m
 	ar=`playerctl metadata --format ' {{ artist }} '`
 	al=${#ar}
-	#echo ${al}
-	if [[ ${al} -gt 12 ]]; then
-		
-	    echo "⠀ "${ar}"⠀" 
-	else 
-		echo "⠀"${ar}""
-	fi
+	[[ ${al} -gt 12 ]] && echo "⠀ "${ar}"⠀" || echo "⠀"${ar}""
 }
 img(){
 	local m 
