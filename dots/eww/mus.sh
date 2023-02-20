@@ -1,33 +1,50 @@
 
 title(){
 	local tt
-  local tt_len
+	local tt_len
 	tt=`playerctl metadata --format ' {{ title }} '`
-	[[ ${#tt_len} -gt 20 ]] && echo ${tt} || echo ${tt::$tt_len-($tt_len-20)}
+	tt_len=${#tt}
+	[[ ${tt_len} -gt 20 ]] && echo ${tt::$tt_len-($tt_len-20)} || echo ${tt}
 	[[ ${tt} == "No players found" ]] && echo "No players found" | eww close ma
 }
 title_and_stuff(){
-	local title,c,zy,zz,st
-	title=`playerctl metadata --format ' {{ title }} '`
-# 	status=`playerctl metadata --format '{{ status }}'`
-	st=""
-	c=${#title}
+	local ttl,c,status,mm,i
+	ttl=`playerctl metadata --format ' {{ title }} '`
+# 	zy=`playerctl metadata --format ' {{ artist }} '`
+# 	zz=`playerctl metadata --format '{{ status }}'`
+	status=""
+	c=${#ttl}
 	if [[ ${zz} == "Paused" ]]; then
-		st="玲⠀⠀⠀⠀怜"
-	else st="玲⠀⠀⠀⠀怜"
+		status="玲⠀⠀⠀⠀怜"
+	else status="玲⠀⠀⠀⠀怜"
 	fi
-	[[ ${#title} -gt 38 ]] && echo ${st} "\n" ${title::$c-($c-38)}"... " || echo ${st} "\n" ${title}" "
+	[[ ${#ttl} -gt 28 ]] && echo ${status} "\n" ${ttl::$c-($c-28)}"...⠀⠀⠀" || { 
+		for (( i=0;i<(28-${c});++i )); do 
+			mm+="⠀" 
+		done 
+		echo ${status} "\n" ${ttl}${mm}
+	}
 	
 }
 artist(){
 	local ar
+	local al
+	local n
+	local m
 	ar=`playerctl metadata --format ' {{ artist }} '`
-	echo "⠀ "${ar}" "
+	al=${#ar}
+	#echo ${al}
+	if [[ ${al} -gt 12 ]]; then
+		
+	    echo "⠀ "${ar}"⠀" 
+	else 
+		echo "⠀"${ar}""
+	fi
 }
 img(){
-	local img_
-	img_=`playerctl metadata --format "{{mpris:artUrl}}" `
-	echo ${img_:7}
+	local m 
+	m=`playerctl metadata --format "{{mpris:artUrl}}" `
+	echo ${m:7}
 }
 
 if [[ "$1" == "--img" ]]; then
