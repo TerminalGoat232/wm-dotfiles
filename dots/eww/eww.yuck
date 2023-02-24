@@ -1,7 +1,8 @@
-;;still kind of buggy when nothing is playing but who cares anyway
+
 (defpoll title :interval "0s" "sh mus.sh --title")
 (defpoll artist :interval "1s" "sh mus.sh --artist_only")
-(defpoll img_cover :interval "1s" `sh mus.sh --img`)
+(defpoll a :interval "1s" `playerctl metadata --format '{{ title }}'`)
+(defpoll img_cover :interval "2s" "sh mus.sh --img")
 (deflisten dur :initial "" "playerctl --follow metadata --format '{{ duration(position)}}'")
 (defwidget music []
   (box :class "music"
@@ -10,17 +11,19 @@
        :space-evenly false
        :halign "start"
        :valign "start"
-     (image :class "artcover":image-width 80 :image-height 80 :path img_cover)
+       :tooltip a
+     (image :class "artcover" :image-width 80 :image-height 80 :path img_cover)
      (button :class "active" :onclick `playerctl play-pause`)
      (button :class "prev" :onclick `playerctl previous`)
      (button :class "next" :onclick `playerctl next`)
-     {title != "" ? " ${dur}  ${title}" : "nothing is playing"}
-     (label :class "artist" :wrap true :limit-width 15 :text artist)
+     (label  :class "dur"  :text "[ 羽 ${dur} ]" )
+     (label :text {title != "" ? "${title}" : "nothing is playing"})
+     (label :class "artist" :wrap true :limit-width 16 :text artist)
     ))
     
 
 (defwindow ma 
-	:stacking "fg" :focusable false :screen 1 
+	:focusable false :screen 1
 	:vexpand false
   	:hexpand false
 	:geometry (geometry :x -10 :y 50 :anchor "top right")
