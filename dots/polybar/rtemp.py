@@ -1,4 +1,3 @@
 #!/usr/bin/env python3
 from tempout import *
-print(wther([]).getATemp_RFeel())
-
+print(wther([]).getRTemp())
