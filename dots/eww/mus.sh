@@ -1,5 +1,6 @@
 #!/bin/bash
 #written in half-bash / half-fish so it's pretty damn weird irk
+#this shit is poorly written so
 title(){
 	local tt
 	local cc
