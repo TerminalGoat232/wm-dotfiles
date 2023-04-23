@@ -1,0 +1,61 @@
+(defvar rev_fu_inf false)
+;;(defvar eww "eww -c $HOME/.config/eww")
+(defpoll air_cond :interval "10s" "python3 ~/.config/polybar/air.py")
+(defpoll humidity :interval "10s" "python3 ~/.config/polybar/hum.py")
+(defpoll uv_i :interval "10s" "python3 ~/.config/polybar/uv.py")
+(defpoll wind_cond :interval "10s" "python3 ~/.config/polybar/wind.py")
+(defpoll temp :interval "10s" "python3 ~/.config/polybar/atemp.py")
+(defpoll rtemp :interval "10s" "python3 ~/.config/polybar/rtemp.py")
+(defpoll wther_ic :interval "10s" "python3 ~/.config/polybar/weather.py")
+(defpoll moon_phase :interval "5m" "python3 ~/.config/polybar/moon_phase.py")
+(defpoll delta_temp :interval "10s" "python3 ~/.config/polybar/delta_temp.py")
+(defpoll precipitation :interval "10s" "python3 ~/.config/polybar/precip.py")
+
+(defwidget temp_f []
+     (box :class "wther_in4" :space-evenly false
+       
+        (label :class "air_cond" :space-evenly false :text "${air_cond}")
+        (label :class "humidity" :space-evenly false :text "${humidity}")
+        (label :class "uv_i" :space-evenly false :text "${uv_i}")
+        (label :class "wind_cond" :space-evenly false :text "${wind_cond}")
+        (label :class "wther_ic" :halign "start" :hexpand false :vexpand false :space-evenly false :text "${wther_ic}")
+        (label :class "delta_temp" :space-evenly false :text "${delta_temp}")
+        (label :class "precip" :space-evenly false :text "${precipitation}")
+
+        (eventbox
+            :onhover "${eww} update rev_fu_inf=true"
+            :onhoverlost "${eww} update rev_fu_inf=false"
+            (box :class "b1" :space-evenly false
+                  (revealer 
+                      :reveal "${!rev_fu_inf}"
+                      :transition "slideleft"
+                      :duration "350ms" 
+                      (label :class "t1" :space-evenly false :text "Actual")
+                  )
+                  (revealer 
+                      :reveal "${rev_fu_inf}"
+                      :transition "slideright"
+                      :duration "350ms"
+                      (label :class "t2" :space-evenly false :text "⠀Real ")
+                  ) 
+                  (revealer
+                      :reveal "${!rev_fu_inf}"
+                      :transition "slideleft"
+                      :duration "300ms" 
+                      (label :class "tempout" :space-evenly false :text "${temp}")
+                  )
+
+                  (revealer
+                      :reveal "${rev_fu_inf}"
+                      :transition "slideright"
+                      :duration "300ms"
+
+                      (label :class "tempoutr" :space-evenly false :text "${rtemp}") 
+                  )
+
+          )
+        )
+      (label :class "moon_phase" :space-evenly false :text "${moon_phase}")
+    )
+)
+

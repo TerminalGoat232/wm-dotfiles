@@ -1,0 +1,15 @@
+(defpoll current_vol_val :interval "0s" " pactl get-sink-volume @DEFAULT_SINK@ | grep front-right | awk -F'/' '{print $2}' | cut -b 3-4")
+(defwidget vol_slidr []
+    (box :class "vmain_box" :space-evenly false
+        (box :class "v_wget" :space-evenly false
+          (scale :class "scler" 
+                 :min 0 :max 100
+                 :width 180
+                 :value current_vol_val
+                 :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
+          )
+        )
+
+    )
+)
+

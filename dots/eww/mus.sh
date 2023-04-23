@@ -1,25 +1,45 @@
-
 #!/bin/bash
+#written in half-bash / half-fish so it's pretty damn weird irk
 title(){
 	local tt
-	local tt_len
+	local cc
+	local ma
 	tt=`playerctl metadata --format ' {{ title }} ' 2>/dev/null`
-	tt_len=${#tt}
-	[[ ${tt_len} -gt 20 ]] && echo ${tt::$tt_len-($tt_len-20)} || echo ${tt}
+	cc=${#tt}
+	[[ ${cc} -gt 20 ]] && echo ${tt::$cc-($cc-20)} || echo ${tt}
+}
+
+full_title_with_scrolling(){
+  local c
+  tt=`playerctl metadata --format ' {{ title }} ' 2>/dev/null`
+  l=${#tt} 
+
+  #echo ${c}
+   
+  r=$((${l} / 3))
+   if [[ ${#tt} -lt 25 ]]; then echo "$tt"
+  else
+    for (( k=1;k<${l}-2;++k)); do
+       c+=" "
+    done
+    tt+=${c}
+    tt=${c::5}${tt} 
+    (echo "$tt" | zscroll -n true -l 10 -d 0.18 -t $((${r} - 5)) & wait )
+  fi 
 }
 title_and_stuff(){
-	local titl,titl_len,rtist,sttus,st,mm,i
-	titl=`playerctl metadata --format ' {{ title }} '`
-	#rtist=`playerctl metadata --format ' {{ artist }} '`
-	sttus=`playerctl metadata --format '{{ status }}'`
+	local zx,c,zy,zz,st,mm,i
+	zx=`playerctl metadata --format ' {{ title }} '`
+	# zy=`playerctl metadata --format ' {{ artist }} '`
+	zz=`playerctl metadata --format '{{ status }}'`
 	st=""
-	titl_len=${#titl}
-	[[ ${sttus} == "Paused" ]] && st="⠀玲⠀⠀  ⠀⠀怜" || st="⠀玲⠀⠀  ⠀⠀怜"
-	[[ ${#titl} -gt 28 ]] && echo ${titl_len} "\n"${titl::$titl_len-($titl_len-28)}"...⠀⠀⠀" || { 
-		for (( i=0;i<(32-${titl_len});++i )); do 
-			mm+="⠀" 
-		done 
-		echo ${st} "\n"""${titl}${mm::$titl_len-($titl_len-18)}
+	c=${#zx}
+	[[ ${zz} == "Paused" ]] && st="⠀玲⠀⠀  ⠀⠀怜" || st="⠀玲⠀⠀  ⠀⠀怜"
+	[[ ${#zx} -gt 28 ]] && echo ${st} "\n"${zx::$c-($c-28)}"...⠀⠀⠀" || {
+		for (( i=0;i<(32-${c});++i )); do 
+			mm+="⠀"
+		done
+		echo ${st} "\n"""${zx}${mm::$c-($c-18)}
 	}
 }
 artist(){
@@ -32,9 +52,9 @@ artist(){
 	[[ ${al} -gt 12 ]] && echo "⠀⠀"${ar}"⠀" || echo "⠀"${ar}""
 }
 img(){
-	local get_img_dir 
-	get_img_dir=`playerctl metadata --format "{{mpris:artUrl}}"`
-	echo ${get_img_dir:7}
+	local m 
+	m=`playerctl metadata --format "{{mpris:artUrl}}"`
+	echo ${m:7}
 }
 
 if [[ "$1" == "--img" ]]; then
@@ -47,4 +67,6 @@ elif [[ "$1" == "--artist_only" ]]; then
 	artist
 elif [[ "$1" == "--duration" ]]; then
 	duration
+elif [[ "$1" == "--title_scroll" ]]; then 
+  full_title_with_scrolling
 fi

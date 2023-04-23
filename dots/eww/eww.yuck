@@ -1,9 +1,21 @@
-
-(defpoll title :interval "0s" "sh mus.sh --title")
+;;other .yuck files
+(include "temp_full.yuck")
+(include "volume_slide.yuck")
+;;eww vars
+(defvar eww "eww -c $HOME/.config/eww")
+(defvar rev_cal false)
+(defvar cal_win_width "400px")
+;;music polls
+(defpoll title :interval "1s" "sh mus.sh --title")
 (defpoll artist :interval "1s" "sh mus.sh --artist_only")
-(defpoll a :interval "1s" `playerctl metadata --format '{{ title }}'`)
+(defpoll full_title :interval "2s" `playerctl metadata --format '{{ title }}'`)
 (defpoll img_cover :interval "2s" "sh mus.sh --img")
 (deflisten dur :initial "" "playerctl --follow metadata --format '{{ duration(position)}}'")
+;;date-time polls
+(defpoll month :interval "10h" "date \"+%b\"")
+(defpoll day :interval "10h" "date \"+%d\"")
+(defpoll dayinweek :interval "1h" "date \"+%a\"")
+(defpoll hour :interval "2s" "date \"+%H:%M\"")
 (defwidget music []
   (box :class "music"
   	   :vexpand false 
@@ -11,20 +23,73 @@
        :space-evenly false
        :halign "start"
        :valign "start"
-       :tooltip a
+       :tooltip full_title
      (image :class "artcover" :image-width 80 :image-height 80 :path img_cover)
      (button :class "active" :onclick `playerctl play-pause`)
      (button :class "prev" :onclick `playerctl previous`)
      (button :class "next" :onclick `playerctl next`)
-     (label  :class "dur"  :text "[ 羽 ${dur} ]" )
+     (label  :class "dur"  :text "< 羽 ${dur} >" )
      (label :text {title != "" ? "${title}" : "nothing is playing"})
      (label :class "artist" :wrap true :limit-width 16 :text artist)
     ))
-    
+(defwidget sub_calendr []
+  (eventbox  
+    :onhover "${eww} update rev_cal=true && ${eww} update cal_win_width='300px' "
+    :onhoverlost " ${eww} update rev_cal=false"
+   (box  :class "calendr" :orentation "v" :space-evenly false 
+        (box :class "day" :space-evenly false {day})
+        (label :class "slash" :text "/")
+        (box :class "month" :space-evenly false {month})
 
+    (revealer
+        :reveal "${rev_cal}"
+        :transition "slideleft"
+        :duration "350ms"
+
+        (calendar :class "cal" :show-week-numbers true :show-details true ) 
+    )
+    (revealer
+        :reveal "${!rev_cal}"
+        :transition "slideleft"
+        :duration "340ms"
+        (box :class "diw" :space-evenly false {dayinweek}))
+    (revealer
+        :reveal "${!rev_cal}"
+        :transition "slideright"
+        :duration "300ms"
+        (box :class "hour" :space-evenly false {hour})
+       
+    ) 
+   ) 
+  )
+)
 (defwindow ma 
 	:focusable false :screen 1
 	:vexpand false
-  	:hexpand false
-	:geometry (geometry :x -10 :y 50 :anchor "top right")
+  :hexpand false
+	:geometry (geometry :x -10 :y 30 :anchor "top right")
 	(music))
+(defwindow clendar
+  :wm-ignore true
+  :focusable false :screen 1
+  :vexpand false
+  :hexpand false
+  :geometry (geometry :width "24%" :x -700 :y -330 :anchor "center")
+  (sub_calendr))
+(defwindow tempf
+  :wm-ignore true
+  :focusable false :screen 1
+  :vexpand false
+  :hexpand false
+  :geometry (geometry :x -400 :y -400 :anchor "center")
+  (temp_f)
+)
+(defwindow vol_slider
+  :wm-ignore true
+  :focusable false :screen 1
+  :vexpand false
+  :hexpand false
+  :geometry (geometry :x 380 :y -470 :anchor "center")
+  (vol_slidr)
+)
+  
