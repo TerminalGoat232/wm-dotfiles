@@ -1,5 +1,5 @@
 #!/bin/bash
-#written in half-bash / half-fish so it's pretty damn weird irk
+#written in half-bash / half-fish so it's pretty damn weird ikr
 #this shit is poorly written so
 title(){
 	local tt
