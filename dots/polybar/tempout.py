@@ -6,7 +6,7 @@ from time import *
 from dataclasses import dataclass
 get_dat_from_url=''
 
-region='thua-thien-thuy-xuan'
+region='ur region goes here'
 
 dat=f"https://wttr.in/{region}?format=%t+%f+%c+%h+%w+%P+%u+%m+%M+%p"
 
