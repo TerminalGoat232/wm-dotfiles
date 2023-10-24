@@ -47,7 +47,9 @@ floating_modifier $mod
 bindsym $mod+Return exec alacritty
 #bindsym $mod+F12 exec alacritty 
 #bindsym $mod+F11 exec kitty
-bindsym $mod+d exec --no-startup-id rofi -show drun -show combi -icon-theme "ePapirus" -show-icons -display-drun " "
+bindsym $mod+d exec --no-startup-id rofi -show drun -show combi -icon-theme "ePapirus" -show-icons -display-drun " "
+bindsym Print exec maim -s -u | xclip -selection clipboard -t image/png -i
+bindsym $mod+Print exec maim -u | xclip -selection clipboard -t image/png -i
 bindsym $mod+Shift+f exec firefox 
 bindsym $mod+Shift+w exec xgamma -rgamma 1.33 -ggamma 1.005 -bgamma .8
 bindsym $mod+Shift+n exec xgamma -rgamma 1 -ggamma 1 -bgamma 1
@@ -58,13 +60,14 @@ exec_always ibus-daemon -drx
 exec_always feh --bg-fill /home/terminalgoat/Desktop/cv.png
 exec_always picom --no-use-damage 
 exec_always polybar -q
-exec_always xgamma -rgamma 1.33 -ggamma 1.005 -bgamma.8
+#exec_always xgamma -rgamma 1.33 -ggamma 1.005 -bgamma.8
 exec_always tint2
 exec_always pasystray
 exec_always git_hub/xborder/xborders -c git_hub/xborder/example_config.json
-exec_always python3 /home/terminalgoat/.config/i3/set_volume.py
-exec_always autorandr clone-largest && xrandr --output eDP-1 --off
+exec_always python3 ~/home/terminalgoat/.config/i3/set_volume.py
 
+#exec_always autorandr clone-largest && xrandr --output eDP-1 --off
+exec_always xrandr --output DP-3 --primary
 bindsym $mod+Shift+q kill
 exec_always sh autotiling.sh -w 1 3 5 7 9
 #exec_always sh /home/terminalgoat/.config/eww/dashboard_workspace.sh
@@ -73,7 +76,7 @@ exec_always sh autotiling.sh -w 1 3 5 7 9
 #default_border none 
 default_floating_border pixel 10
 #hide_edge_borders both
-smart_gaps on
+smart_gaps off
 gaps inner 15
 gaps outer 0
 for_window [class=".*"] border pixel 3
@@ -202,8 +205,10 @@ for_window [class="Xsnow"] floating enable;
 bindsym $mod+Control+s resize grow height 30px
 bindsym $mod+Control+w resize shrink height 30px
 bindsym $mod+Control+d resize grow width 30px
-bindsym $mod+Control+a resize shrink width 30px
-bindsym $mod+Control+k exec killall picom polybar tint2 pasystray python3
+bindsym $mod+Control+a resize shrink width 30px 
+
+
+bindsym $mod+Control+k exec killall picom polybar tint2 pasystray python3 eww
 #nmode "mv" {
 #	bindsym $mod+Tab focus right 
 #	bindsym w move up
@@ -235,12 +240,12 @@ bindsym $mod+r mode "Move windows + resize"
 #			urgent_workspace #1d1d1d #1f1e1d #fffbef
  #	}
 #} 
-client.background #1f1e1c
-client.urgent #ffca93 #1f1e1c #1f1e1c
+client.background #2d1c0a
+client.urgent #ffca93 #2d1c0a #2d1c0a
 #client.focused #ffca93 #f39f3b #f39f3b #f39f3b 
-client.focused #ffca93 #1d1a13 #1d1a13 #1d1a13 
-client.unfocused #ffca93 #292724 #292724 #292724
-client.focused_inactive #ffca93 #1f1e1c #fffbe1 #1f1e1c
+client.focused #ffca93 #2d1c0a #2d1c0a #2d1c0a 
+client.unfocused #ffca93 #2d1c0a #2d1c0a #2d1c0a
+client.focused_inactive #ffca93 #2d1c0a #fffbe1 #2d1c0a
 #raduisiufbfg
 smart_borders on
 smart_borders no_gaps
