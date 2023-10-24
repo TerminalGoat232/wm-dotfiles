@@ -2,9 +2,12 @@
 (defwidget vol_slidr []
     (box :class "vmain_box" :space-evenly false
         (box :class "v_wget" :space-evenly false
-          (scale :class "scler" 
+          (scale :class "scler"
+                 :orientation "h"
                  :min 0 :max 100
-                 :width 180
+                 :height 0
+                 :width 250
+                 :flipped false
                  :value current_vol_val
                  :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
           )

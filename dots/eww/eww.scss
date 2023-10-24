@@ -1,30 +1,30 @@
 .artcover {
   margin-right: 10px;
-  background-color:#1d1d1d;
+  background-color:#281a0b;
 
   border-radius:5px;
 }
 .dur{
   //background-color:#1f1f1f;
-  color:#ee895b;
+  color:#fca118;
   margin-right:-320px;
   margin-top:-22px;
 }
 .wther_in4{
-  background-color:#211d1a;
+  background-color:#2d1a09;
   min-height:00px;
-  margin-top:10px;
+  //margin-top:10px;
   min-width:200px;
 }
 .air_cond{
- color:#E5B299;
+ color:#ff8f42;
  margin-left:15px;
  margin-top:15px;
  font-family:Noto Mono Nerd Font;
  font-size:14px;
 }
 .precip{
-  color:#E5B299;
+  color:#ff9a4b;
   font-family:Noto Mono Nerd Font;
   font-size:14px;
   margin-bottom:-100px;
@@ -33,21 +33,21 @@
 }
 
 .delta_temp{
-  color:#E5B299;
+  color:#ff9a4b;
   font-family:Noto Mono Nerd Font;
   font-size:14px;
   margin-bottom:-60px;
   margin-left:-35px;
 }
 .humidity{
-  color:#E5B299;
+  color:#ff9a4b;
   margin-top:60px;
   margin-left:-135px;
   font-family:Noto Mono Nerd Font;
   font-size:14px;
 }
 .uv_i{
-  color:#E5B299;
+  color:#ff9a4b;
   margin-top:15px;
   margin-left:15px;
   font-family:Noto Mono Nerd Font;
@@ -55,7 +55,7 @@
 
 }
 .wind_cond{
-  color:#E5B299;
+  color:#ff9a4b;
   margin-top:100px;
   margin-left:-200px;
   font-family:Noto Mono Nerd Font;
@@ -68,8 +68,8 @@
   font-size:40px;
 }
 .tempout{
-  color:#f0997d;
-  background-color:#1B120F;
+  color:#ff9a4b;
+  background-color:#251004;
   margin-bottom:110px;
   margin-top:15px;
   margin-right:15px;
@@ -79,8 +79,8 @@
   font-size:30px;
 }
 .tempoutr{
-  background-color:#f0997d;
-  color:#1f1e1c;
+  background-color:#ff9a4b;
+  color:#251004;
   margin-right:15px;
   margin-top:15px;
   border-radius:8px;
@@ -91,7 +91,7 @@
 }
 .wther_ic{
   //background-color:#211d1a;
-  color:#f0997d;
+  color:#ff9a4b;
   border-radius:10px;
   margin-left:-200px;
   font-size:50px;
@@ -103,14 +103,14 @@
   margin-bottom:140px;
   margin-top:10px;
   border-radius:5px;
-  background-color:#f0997d;
-  color:#211d1a;
+  background-color:#ff9a4b;
+  color:#251004;
 }
 .t2{
-  color:#f0997d;
+  color:#ff9a4b;
   margin-top:10px;
   border-radius:5px;
-  background-color:#1B120F;
+  background-color:#251004;
 
   margin-bottom:140px;
 }
@@ -135,7 +135,7 @@
 .diw{
     margin-left: 30px;
     margin-bottom:10px;
-    color: #F0997D;
+    color: #ff9a4b;
 }
 .hour{
     margin-bottom: 50px;
@@ -146,7 +146,7 @@
 }
 .slash{
   margin-top:15px; 
-  color:#FFBC97;
+  color:#ff9a4b;
 }
 .day{
  background-color:#282828;
@@ -160,33 +160,38 @@
  color:#A84448;
 }
 .active{
-  background-color:#1f1f1f;
+  background-color:#352511;
   margin-top:30px;
-  margin-bottom:52px;
-  margin-right:-70px;
-  margin-left:35px;
+  margin-bottom:50px;
+  margin-right:-80px;
+  margin-left:40px;
   border-radius:10px;
+   border:none;
+
 }
 .prev{
-  background-color:#2f2f2f;
+  background-color:#352511;
   margin-top:30px;
   margin-bottom:52px;
   margin-right:-30px;
   margin-left:0px;
   border-radius:10px;
+   border:none;
+
 }
 .next{
-  background-color:#2f2f2f;
+  background-color:#352511;
   margin-top:30px;
   margin-bottom:52px;
   margin-right:-105px;
   margin-left:75px;
   border-radius:10px;
+  border:none;
 }
 .ma {
 
-  color: #ffc699;
-  background-color:#282828;
+  color: #f4c985;
+  background-color:#352511;
   border-radius:10px;
   font-size : 14px;
   font-weight : bold;
@@ -194,8 +199,8 @@
 }
 
 .artist {
-  color: #1d1d1d;
-  background-color:#ffc699;
+  color: #281a0b;
+  background-color:#ffb952;
   font-size : 13px;
   font-style : italic;
   margin-right:15px;
@@ -206,17 +211,65 @@
   min-width:135px;
 }
 .scler{
-  margin-left:20px; 
+ background-color:#2d1a09;
+ margin: 2px 10px 2px 10px;
+
 }
 .v_wget {
-  margin:3px 3px 3px 4px;
-  background-color:#211d1a ;
-  border-radius:12px;
+  //margin:3px 3px 3px 4px;
+  background-color:#2d1a09 ;
+  border-radius:8px;
   min-height:47px;
-  min-width:197px;
+  min-width:16px;
 }
-.vmain_box{
+/*..vmain_box{
   background-color: #fa9052;
-  min-width:200px;
-  min-height:50px;
+  min-width:20px;
+  min-height:10px;
+}*/
+.chng_locc{
+  background-color:#2d1a09;
 }
+.loc_input{
+  color:#ff9a4b;
+  background-color:#2d1a09;
+  border: None;
+  //margin-left:30px;
+}
+
+.deco_1{
+    font-size:30px; 
+    color: #FF887d;
+    background-color: #22160a;
+}
+.deco_2{
+    font-family: Noto Mono Nerd Font;
+    color: #ff9a4b;
+    font-size:50px;
+    border-radius:45px;   
+    margin-left:20px;
+   }
+.deco_3{
+    font-family: Noto Mono Nerd Font;
+    color: #211d1a;
+    border-radius:4px;
+    background-color:#ff9a4b;
+    font-size:20px;
+    border:None;
+    margin-left:-36px;
+    margin-top:20px;
+}
+.btt_options{
+    font-family:inherit;
+    color:#ff9a4b;
+    background-color:#2d1a09;
+    font-size:25px;
+    border-radius:10px;
+   // border:5px #1d1d1d;
+    margin-left:-60px;
+    margin-right:20px;
+    margin-top:130px;
+    margin-bottom:20px;
+}
+
+

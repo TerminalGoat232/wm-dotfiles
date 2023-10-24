@@ -1,6 +1,5 @@
 #!/bin/bash
-#written in half-bash / half-fish so it's pretty damn weird ikr
-#this shit is poorly written so
+#written in half-bash / half-fish so it's pretty damn weird irk
 title(){
 	local tt
 	local cc
@@ -25,7 +24,7 @@ full_title_with_scrolling(){
     done
     tt+=${c}
     tt=${c::5}${tt} 
-    (echo "$tt" | zscroll -n true -l 10 -d 0.18 -t $((${r} - 5)) & wait )
+    (echo "$tt" | zscroll -n true -l 10 -d 0.15 -t $((${r} - 5)) & wait )
   fi 
 }
 title_and_stuff(){
@@ -35,7 +34,7 @@ title_and_stuff(){
 	zz=`playerctl metadata --format '{{ status }}'`
 	st=""
 	c=${#zx}
-	[[ ${zz} == "Paused" ]] && st="⠀玲⠀⠀  ⠀⠀怜" || st="⠀玲⠀⠀  ⠀⠀怜"
+	[[ ${zz} == "Paused" ]] && st="⠀󰒮⠀⠀  ⠀⠀󰒭" || st="⠀󰒮⠀⠀  ⠀⠀󰒭"
 	[[ ${#zx} -gt 28 ]] && echo ${st} "\n"${zx::$c-($c-28)}"...⠀⠀⠀" || {
 		for (( i=0;i<(32-${c});++i )); do 
 			mm+="⠀"
@@ -50,7 +49,7 @@ artist(){
 	local m
 	ar=`playerctl metadata --format ' {{ artist }} '`
 	al=${#ar}
-	[[ ${al} -gt 12 ]] && echo "⠀⠀"${ar}"⠀" || echo "⠀"${ar}""
+	[[ ${al} -gt 12 ]] && echo "⠀󰎈⠀"${ar}"⠀" || echo "⠀󰎈 ""${ar}"
 }
 img(){
 	local m 

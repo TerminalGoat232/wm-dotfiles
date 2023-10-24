@@ -1,15 +1,15 @@
 (defvar rev_fu_inf false)
 ;;(defvar eww "eww -c $HOME/.config/eww")
-(defpoll air_cond :interval "10s" "python3 ~/.config/polybar/air.py")
-(defpoll humidity :interval "10s" "python3 ~/.config/polybar/hum.py")
-(defpoll uv_i :interval "10s" "python3 ~/.config/polybar/uv.py")
-(defpoll wind_cond :interval "10s" "python3 ~/.config/polybar/wind.py")
-(defpoll temp :interval "10s" "python3 ~/.config/polybar/atemp.py")
-(defpoll rtemp :interval "10s" "python3 ~/.config/polybar/rtemp.py")
-(defpoll wther_ic :interval "10s" "python3 ~/.config/polybar/weather.py")
-(defpoll moon_phase :interval "5m" "python3 ~/.config/polybar/moon_phase.py")
-(defpoll delta_temp :interval "10s" "python3 ~/.config/polybar/delta_temp.py")
-(defpoll precipitation :interval "10s" "python3 ~/.config/polybar/precip.py")
+(defpoll air_cond :interval "1m" "python3 ~/.config/polybar/air.py")
+(defpoll humidity :interval "1m" "python3 ~/.config/polybar/hum.py")
+(defpoll uv_i :interval "1m" "python3 ~/.config/polybar/uv.py")
+(defpoll wind_cond :interval "50s" "python3 ~/.config/polybar/wind.py")
+(defpoll temp :interval "1m" "python3 ~/.config/polybar/atemp.py")
+(defpoll rtemp :interval "1m" "python3 ~/.config/polybar/rtemp.py")
+(defpoll wther_ic :interval "1m" "python3 ~/.config/polybar/weather.py")
+(defpoll moon_phase :interval "1m" "python3 ~/.config/polybar/moon_phase.py")
+(defpoll delta_temp :interval "1m" "python3 ~/.config/polybar/delta_temp.py")
+(defpoll precipitation :interval "1m" "python3 ~/.config/polybar/precip.py")
 
 (defwidget temp_f []
      (box :class "wther_in4" :space-evenly false
@@ -22,9 +22,13 @@
         (label :class "delta_temp" :space-evenly false :text "${delta_temp}")
         (label :class "precip" :space-evenly false :text "${precipitation}")
 
+        
         (eventbox
             :onhover "${eww} update rev_fu_inf=true"
             :onhoverlost "${eww} update rev_fu_inf=false"
+            
+
+            
             (box :class "b1" :space-evenly false
                   (revealer 
                       :reveal "${!rev_fu_inf}"
@@ -43,19 +47,29 @@
                       :transition "slideleft"
                       :duration "300ms" 
                       (label :class "tempout" :space-evenly false :text "${temp}")
-                  )
+                   )
 
                   (revealer
                       :reveal "${rev_fu_inf}"
-                      :transition "slideright"
+                      :transition "slideright" 
                       :duration "300ms"
-
                       (label :class "tempoutr" :space-evenly false :text "${rtemp}") 
                   )
 
           )
         )
-      (label :class "moon_phase" :space-evenly false :text "${moon_phase}")
+    (label :class "moon_phase" :space-evenly false :text "${moon_phase}")
+    (button :class "btt_options" 
+            :onclick `eww open changeloc`"..." 
+    )
     )
 )
-
+(defwidget chng_loc []
+    (box :class "chng_locc" :space-evenly false
+         (label :class "deco_1" :text "  ") 
+         
+         (input :class "loc_input" :width 200 :value 'your region goes here' :onaccept "sh $HOME/.config/eww/input_handle_lc.sh '{}'")
+         (label :class "deco_2" :text "")
+         (button :class "deco_3" :onclick `eww close changeloc`"x")
+    )
+)

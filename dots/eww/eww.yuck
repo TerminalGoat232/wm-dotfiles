@@ -28,8 +28,8 @@
      (button :class "active" :onclick `playerctl play-pause`)
      (button :class "prev" :onclick `playerctl previous`)
      (button :class "next" :onclick `playerctl next`)
-     (label  :class "dur"  :text "< 羽 ${dur} >" )
-     (label :text {title != "" ? "${title}" : "nothing is playing"})
+     (label  :class "dur"  :text "${dur} " )
+     (label :text {title != "" ? "${title}" : "    nothing is playing    "})
      (label :class "artist" :wrap true :limit-width 16 :text artist)
     ))
 (defwidget sub_calendr []
@@ -67,7 +67,7 @@
 	:focusable false :screen 1
 	:vexpand false
   :hexpand false
-	:geometry (geometry :x -10 :y 30 :anchor "top right")
+	:geometry (geometry :x -10 :y 40 :anchor "top right")
 	(music))
 (defwindow clendar
   :wm-ignore true
@@ -78,18 +78,27 @@
   (sub_calendr))
 (defwindow tempf
   :wm-ignore true
-  :focusable false :screen 1
+  :focusable true :screen 1
   :vexpand false
   :hexpand false
   :geometry (geometry :x -400 :y -400 :anchor "center")
   (temp_f)
+)
+(defwindow changeloc
+ :wm-ignore false
+ :focusable true :screen 1
+ :vexpand false
+ :hexpand false
+ :windowtype "dialog"
+ :geometry (geometry :x -400 :y -260 :width "14%" :anchor "center")
+ (chng_loc)
 )
 (defwindow vol_slider
   :wm-ignore true
   :focusable false :screen 1
   :vexpand false
   :hexpand false
-  :geometry (geometry :x 380 :y -470 :anchor "center")
+  :geometry (geometry :x 820 :y -350 :anchor "center")
   (vol_slidr)
 )
   
