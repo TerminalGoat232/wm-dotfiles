@@ -1,43 +1,42 @@
 /**
  * ROFI Color theme
  * User: terminalgoat
- * Copyright: among
  */
-
+@import "~/.cache/wal/colors-rofi-dark"
 * {
     text-color:  #ffcda0;
     background-color:  rgba(0,0,0,0);
-    dark: #1c1c1c;
+    dark: @background;
     // Black
-    black:       #3d352a;
-    lightblack:  #554444;
+   // black:       #3d352a;
+    //lightblack:  #554444;
     //
     // Red
-    red:         #cd5c5c;
+    //red:         #cd5c5c;
     lightred:    #cc5533;
     //
     // Green
-    green:       #86af80;
+    //green:       #86af80;
     lightgreen:  #88cc22;
     //
     // Yellow
-    yellow:      #e8ae5b;
+    //yellow:      #e8ae5b;
     lightyellow:     #ffa75d;
     //
     // Blue
-    blue:      #6495ed;
+    //blue:      #6495ed;
     lightblue:     #87ceeb;
     //
     // Magenta
-    magenta:      #deb887;
+    //magenta:      #deb887;
     lightmagenta:     #996600;
     //
     // Cyan
-    cyan:      #b0c4de;
+    //cyan:      #b0c4de;
     lightcyan:     #b0c4de;
     //
     // White
-    white:      #bbaa99;
+    //white:      #bbaa99;
     lightwhite:     #ddccbb;
     //
     // Bold, Italic, Underline
@@ -50,11 +49,11 @@ window {
     anchor:   none;
     
     border:  0px 0px 0px 0px;
-    text-color: #ffcda0;
+    text-color: @active-background;
 }
 mode-switcher {
     border: 2px 0px 0px 0px;
-    background-color: #1d1d1d;
+    background-color: @background;
     padding: 0px;
 }
 button selected {
@@ -62,28 +61,32 @@ button selected {
     text-color: @lightgreen;
 }
 inputbar {
-    background-color: #1a1a1a;
-    text-color: @lightgreen;
-    padding:5px;
-    border: 0px 0px 2px 0px;
+    background-color: #2b1600;
+    //text-color: @background;
+    padding:10px;
+    border-radius:8px;
+    //border: 0px 0px 0px 0px;
 }
 mainbox {
     expand: true;
-    background-color: #1f1e1c;
+    background-color: @background;
     spacing: 2em;
 }
 listview {
-    padding: 0em 0.4em 0em 1em;
+    padding: 0em 1.2em 2em 1em;
     dynamic: true;
-    lines: 1;
+    lines: 2;
 }
 element-text {
     background-color: inherit;
     text-color:       inherit;
 }
 element selected  normal {
-    background-color: #ffcda0;
-    text-color:#1d1d1d;
+    border-radius:5px;
+    padding:2em 1em 1em 1em;
+    background-color: @selected-urgent-background;
+    text-color:@background;
+    
 }
 element normal active {
     text-color: @lightblue;
