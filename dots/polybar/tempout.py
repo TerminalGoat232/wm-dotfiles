@@ -6,20 +6,13 @@ from time import *
 from dataclasses import dataclass
 get_dat_from_url=''
 
-region='ur region goes here'
-
-dat=f"https://wttr.in/{region}?format=%t+%f+%c+%h+%w+%P+%u+%m+%M+%p"
+region='insert ur region here'
 
 try:
-	with urllib.request.urlopen(dat) as h:
-		try: 
-			get_dat_from_url=h.read().decode(h.headers.get_content_charset())
-			#fl="("+b.read().decode(h.headers.get_content_charset())+") "
-		except:print('manjg ngu')
+	with urllib.request.urlopen(f"https://wttr.in/{region}?format=%t+%f+%c+%h+%w+%P+%u+%m+%M+%p") as h: get_dat_from_url=h.read().decode(h.headers.get_content_charset())
 except:print('shit gone wrong')
-
-wthalist=['⛅','☁','🌦','⛈','🌨','🌩','🌫','🌧','☀']
-wthareplacements=['','摒','','','殺','摒','','','盛 ']
+wthalist=       ['⛅','☁','🌦','⛈','🌨','🌩','🌫','🌧','☀']
+wthareplacements=['','󰅟','','󰙾','󰼶','󰖓','','','']
 @dataclass
 class wther:
 	main_dat:list
@@ -28,16 +21,14 @@ class wther:
 	def __post_init__(self):
 		self.main_dat=get_dat_from_url.split()
 		for y in range(0,len(wthalist)):
-			try:
-				if wthalist[y] in self.main_dat[2] and self.time in range(18,24):
-					self.weather=" 望 "+wthareplacements[y]
-				elif wthalist[y] in self.main_dat[2] and self.time in range(0,7):
-					self.weather="  "+wthareplacements[y]
-				elif wthalist[y] in self.main_dat[2] and self.time in range(7,13):
-					self.weather=" 滛 "+wthareplacements[y]
-				elif wthalist[y] in self.main_dat[2] and self.time in range(13,18):
-					self.weather=" 漢 "+wthareplacements[y]
-			except:pass
+			if wthalist[y] in self.main_dat[2] and self.time in range(18,24):
+				self.weather=" 望 "+wthareplacements[y]
+			elif wthalist[y] in self.main_dat[2] and self.time in range(0,7):
+				self.weather="  "+wthareplacements[y]
+			elif wthalist[y] in self.main_dat[2] and self.time in range(7,13):
+				self.weather=" 滛 "+wthareplacements[y]
+			elif wthalist[y] in self.main_dat[2] and self.time in range(13,18):
+				self.weather=" 漢 "+wthareplacements[y]
 		self.temp=" "+self.main_dat[0]+" ["+self.main_dat[1]+"] "
 	def getWeather(self):return self.weather
 	def getATemp_RFeel(self):return self.temp
@@ -51,6 +42,9 @@ class wther:
 	def getMoonDay(self):return self.main_dat[8]
 	def getPrecipitation(self):return self.main_dat[9]
 if __name__ == "__main__":
-	m = wther([])
-	print(m.getWeather(),m.getATemp_RFeel(),end="")
+	try:
+		m = wther([])
+		print(m.getWeather(),m.getATemp_RFeel(),end="")
+	except:pass
 	sleep(5)
+
