@@ -14,7 +14,7 @@ local color8  = "#291703"
 local color9  = "#403030"
 M.base_30 = {
   -- just too lazy to rename these vars to match with their color
-  -- this theme is based on other lua theme templates so idk 
+  -- this theme is based on melange theme templates so idk 
   white = color7,
   --darker_black = color0,
   black = color0, -- nvim bg
