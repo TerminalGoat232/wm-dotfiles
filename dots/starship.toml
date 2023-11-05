@@ -1,0 +1,24 @@
+
+# Use custom format
+format = '''
+[╭──](bold green)<$directory$rust$package/>[ 󱞟 ](bold red)[ 󱞟 ](bold green)[ 󱞟 ](bold yellow)$cmd_duration
+[│](bold green)
+[╰──](bold green) '''
+command_timeout=500
+# Wait 10 milliseconds for starship to check files under the current directory.
+scan_timeout = 10
+
+# Disable the blank line at the start of the prompt
+add_newline = false
+
+# Set 'foo' as custom color palette
+palette = 'foo'
+
+# Define custom colors
+[palettes.foo]
+# Overwrite existing color
+blue = '21'
+# Define new color
+mustard = '#af8700'
+[cmd_duration]
+min_time=500
