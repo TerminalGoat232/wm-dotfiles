@@ -54,7 +54,7 @@ artist(){
 img(){
 	local m 
 	m=`playerctl metadata --format "{{mpris:artUrl}}"`
-	echo ${m:7}
+	[[$m -eq ""]] && echo "placeholderart.png" || echo ${m:7}
 }
 
 if [[ "$1" == "--img" ]]; then
