@@ -21,7 +21,7 @@ class YT_Search:
 if __name__ == "__main__":
     M = YT_Search(arg2)
     g = M.getVideoURL_List()
-    print(g["URI_list"])
+    print(g["URI_list"][0])
     #download thumbnails cuz yeah chromium doesn't return mpris:artUrl while using playerctl
     #so i have no choice tho
     #for z in range(arg2):
