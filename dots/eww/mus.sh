@@ -1,21 +1,16 @@
+
 #!/bin/bash
-#written in half-bash / half-fish so it's pretty damn weird irk
+
+tt=`playerctl metadata --format ' {{ title }} ' 2>/dev/null`
+ar=`playerctl metadata --format ' {{ artist }} ' 2>/dev/null`
 title(){
-	local tt
-	local cc
-	local ma
-	tt=`playerctl metadata --format ' {{ title }} ' 2>/dev/null`
-	cc=${#tt}
-	[[ ${cc} -gt 20 ]] && echo ${tt::$cc-($cc-20)} || echo ${tt}
+   cc=${#tt}
+   [[ ${cc} -gt 20 ]] && echo ${tt::$cc-($cc-20)} || echo ${tt}
 }
 
 full_title_with_scrolling(){
-  local c
-  tt=`playerctl metadata --format ' {{ title }} ' 2>/dev/null`
+  #tt=`playerctl metadata --format ' {{ title }} ' 2>/dev/null`
   l=${#tt} 
-
-  #echo ${c}
-   
   r=$((${l} / 3))
    if [[ ${#tt} -lt 25 ]]; then echo "$tt"
   else
@@ -28,38 +23,44 @@ full_title_with_scrolling(){
   fi 
 }
 title_and_stuff(){
-	local zx,c,zy,zz,st,mm,i
-	zx=`playerctl metadata --format ' {{ title }} '`
-	# zy=`playerctl metadata --format ' {{ artist }} '`
-	zz=`playerctl metadata --format '{{ status }}'`
-	st=""
-	c=${#zx}
-	[[ ${zz} == "Paused" ]] && st="⠀󰒮⠀⠀  ⠀⠀󰒭" || st="⠀󰒮⠀⠀  ⠀⠀󰒭"
-	[[ ${#zx} -gt 28 ]] && echo ${st} "\n"${zx::$c-($c-28)}"...⠀⠀⠀" || {
-		for (( i=0;i<(32-${c});++i )); do 
-			mm+="⠀"
-		done
-		echo ${st} "\n"""${zx}${mm::$c-($c-18)}
-	}
+
+    zx=`playerctl metadata --format ' {{ title }} '`
+    zz=`playerctl metadata --format '{{ status }}'`
+    st=""
+    c=${#zx}
+    [[ ${zz} == "Paused" ]] && st="⠀󰒮⠀⠀  ⠀⠀󰒭" || st="⠀󰒮⠀⠀  ⠀⠀󰒭"
+    [[ ${#zx} -gt 28 ]] && echo ${st} "\n"${zx::$c-($c-28)}"...⠀⠀⠀" || {
+	for (( i=0;i<(32-${c});++i )); do 
+                mm+="⠀"
+	done
+	echo ${st} "\n"""${zx}${mm::$c-($c-18)}
+    }
 }
 artist(){
-	local ar
-	local al
-	local n
-	local m
-	ar=`playerctl metadata --format ' {{ artist }} '`
-	al=${#ar}
-	[[ ${al} -gt 12 ]] && echo "⠀󰎈⠀"${ar}"⠀" || echo "⠀󰎈 ""${ar}"
+    al=${#ar}
+    [[ ${al} -gt 12 ]] && echo "⠀󰎈⠀"${ar}"⠀" || echo "⠀󰎈 ""${ar}"
 }
 img(){
-	local m 
-	m=`playerctl metadata --format "{{mpris:artUrl}}"`
-	if [[ -z "$m" ]]; then 
-   	   echo "placeholderart.png"
-  	else echo ${m:7}  
-  	fi 
+    m=`playerctl metadata --format "{{mpris:artUrl}}"`
+    if [[ -z "$m" ]]; then 
+      echo "tmp0.png"
+      else echo ${m:7}
+    fi 
+ 
+    if [[ $m -eq "No"  ]]; then
+       echo `cp placeholderart.png tmp0.png`
+    fi
+   bgimg
 
 }
+bgimg(){
+  zx=`playerctl metadata --format ' {{ title }} '`
+  a="${zx// /}"
+  a+="${ar// /}"
+  #echo ${a}
+  echo `python3 ~/.config/eww/ytsearch.py ${a} >> /dev/null ` 
+}
+
 
 if [[ "$1" == "--img" ]]; then
 	img
@@ -73,4 +74,8 @@ elif [[ "$1" == "--duration" ]]; then
 	duration
 elif [[ "$1" == "--title_scroll" ]]; then 
   full_title_with_scrolling
+elif [[ "$1" == "--bg-image" ]]; then
+  bgimg
 fi
+
+
