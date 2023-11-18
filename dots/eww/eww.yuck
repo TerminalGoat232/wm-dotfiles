@@ -6,11 +6,17 @@
 (defvar rev_cal false)
 (defvar cal_win_width "400px")
 ;;music polls
+(defpoll status :interval "1s" `playerctl status`)
 (defpoll title :interval "1s" "sh mus.sh --title")
 (defpoll artist :interval "1s" "sh mus.sh --artist_only")
-(defpoll full_title :interval "2s" `playerctl metadata --format '{{ title }}'`)
-(defpoll img_cover :interval "2s" "sh mus.sh --img")
-(deflisten dur :initial "" "playerctl --follow metadata --format '{{ duration(position)}}'")
+(defpoll full_title :interval "1s" `playerctl metadata --format '{{ title }}'`)
+
+(deflisten img_cover :initial "{}" "sh mus.sh --img")
+(defpoll duration_second :interval "1s" "echo `playerctl metadata -f  ' {{ position / 1000000}} '`")
+(defpoll duration_lim :interval "1s" " echo `playerctl metadata -f  ' {{ (mpris:length / 1000000) }} '`")
+(deflisten counting :initial "n/a" "playerctl metadata -F -f  '{{ duration(position)}}'")
+(deflisten duration :initial "n/a" " playerctl metadata -F -f ' {{ duration(mpris:length) }} '")
+
 ;;date-time polls
 (defpoll month :interval "10h" "date \"+%b\"")
 (defpoll day :interval "10h" "date \"+%d\"")
@@ -21,22 +27,59 @@
   	   :vexpand false 
   	   :hexpand false
        :space-evenly false
-       :halign "start"
-       :valign "start"
+       :orientation "h"
        :tooltip full_title
-     (image :class "artcover" :image-width 80 :image-height 80 :path img_cover)
-     (button :class "active" :onclick `playerctl play-pause`)
-     (button :class "prev" :onclick `playerctl previous`)
-     (button :class "next" :onclick `playerctl next`)
-     (label  :class "dur"  :text "${dur} " )
-     (label :text {title != "" ? "${title}" : "    nothing is playing    "})
-     (label :class "artist" :wrap true :limit-width 16 :text artist)
-    ))
+    (box :orientation "h" :space-evenly false 
+      (image :vexpand false :halign "center " 
+             :class "artcover" :image-width 80 
+             :image-height 100 :path img_cover
+      )
+    )
+    (box :class "main" :orientation "v" :space-evenly false 
+        (label :class "m_width" :orientation "v" :text " ")
+        (box :class "mus-title-and-artist" :hexpand false :orientation "v"
+            (box :orientation "v" :space-evenly false  
+                (label :class "mus-title" :hexpand false :limit-width 28
+                    :text "${full_title}"
+                )
+                (label :halign "end" :class "artist" :limit-width 16 :text artist)
+            )
+        )
+        (box :orientation "h" :space-evenly false :halign "center"
+          (label :class "dur"  :text counting )
+          (scale :class "duration-bar" :halign "center"
+                 :min 0 
+                 :active true
+                 :max duration_lim
+                 :width 180
+                 :value duration_second
+                 :onchange "playerctl position {}"
+                
+                )
+          (label :class "dur"  :text duration )
+        )
+        (box :class "controlling-box" :orientation "h" :hexpand false
+          :space-evenly false :halign "center"
+            (button :class "prev" :onclick `playerctl previous` "󰒮")
+            (button :class "active" :onclick `playerctl play-pause`{ status == "Playing" ? "": ""}) 
+            (button :class "next" :onclick `playerctl next` "󰒭") 
+        )
+     )
+     
+    
+   
+     
+    
+
+    
+
+   )
+)
 (defwidget sub_calendr []
   (eventbox  
     :onhover "${eww} update rev_cal=true && ${eww} update cal_win_width='300px' "
     :onhoverlost " ${eww} update rev_cal=false"
-   (box  :class "calendr" :orentation "v" :space-evenly false 
+   (box  :class "calendr" :orientation "v" :space-evenly false 
         (box :class "day" :space-evenly false {day})
         (label :class "slash" :text "/")
         (box :class "month" :space-evenly false {month})
@@ -81,7 +124,7 @@
   :focusable true :screen 1
   :vexpand false
   :hexpand false
-  :geometry (geometry :x -400 :y -400 :anchor "center")
+  :geometry (geometry :x -770 :y -400 :anchor "center")
   (temp_f)
 )
 (defwindow changeloc
@@ -98,7 +141,7 @@
   :focusable false :screen 1
   :vexpand false
   :hexpand false
-  :geometry (geometry :x 820 :y -350 :anchor "center")
+  :geometry (geometry :x 840 :y -330 :anchor "center")
   (vol_slidr)
 )
   
