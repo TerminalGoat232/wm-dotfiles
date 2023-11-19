@@ -11,11 +11,11 @@
 (defpoll artist :interval "1s" "sh mus.sh --artist_only")
 (defpoll full_title :interval "1s" `playerctl metadata --format '{{ title }}'`)
 
-(deflisten img_cover :initial "{}" "sh mus.sh --img")
+(defpoll img_cover :interval "4s" "sh mus.sh --img")
 (defpoll duration_second :interval "1s" "echo `playerctl metadata -f  ' {{ position / 1000000}} '`")
 (defpoll duration_lim :interval "1s" " echo `playerctl metadata -f  ' {{ (mpris:length / 1000000) }} '`")
 (deflisten counting :initial "n/a" "playerctl metadata -F -f  '{{ duration(position)}}'")
-(deflisten duration :initial "n/a" " playerctl metadata -F -f ' {{ duration(mpris:length) }} '")
+(defpoll duration :interval "2s" "playerctl metadata -f ' {{ duration(mpris:length) }} '")
 
 ;;date-time polls
 (defpoll month :interval "10h" "date \"+%b\"")
@@ -30,9 +30,16 @@
        :orientation "h"
        :tooltip full_title
     (box :orientation "h" :space-evenly false 
-      (image :vexpand false :halign "center " 
-             :class "artcover" :image-width 80 
-             :image-height 100 :path img_cover
+      ;;(image :vexpand false :halign "center " 
+       ;;      :class "artcover" :image-width 80 
+       ;;      :image-height 100 :path img_cover
+     ;; )
+      (box :vexpand false :halign "center" :class "artcover"
+           :style "
+           background-image:url('${img_cover}');
+           background-repeat:no-repeat;
+           background-size:80px 50px;
+           background-position:center"
       )
     )
     (box :class "main" :orientation "v" :space-evenly false 
@@ -61,7 +68,9 @@
         (box :class "controlling-box" :orientation "h" :hexpand false
           :space-evenly false :halign "center"
             (button :class "prev" :onclick `playerctl previous` "󰒮")
-            (button :class "active" :onclick `playerctl play-pause`{ status == "Playing" ? "": ""}) 
+            (button :class "stepfb" :onclick `playerctl position "${duration_second - 5}"` "󰓕")
+            (button :class "active" :onclick `playerctl play-pause`{ status == "Playing" ? "": ""})
+            (button :class "stepfb" :onclick `playerctl position "${duration_second + 5}"` "󰓗")
             (button :class "next" :onclick `playerctl next` "󰒭") 
         )
      )
