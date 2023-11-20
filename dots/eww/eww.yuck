@@ -7,14 +7,14 @@
 (defvar cal_win_width "400px")
 ;;music polls
 (defpoll status :interval "1s" `playerctl status`)
-(defpoll title :interval "1s" "sh mus.sh --title")
+;;(defpoll title :interval "1s" "sh mus.sh --title")
 (defpoll artist :interval "1s" "sh mus.sh --artist_only")
 (defpoll full_title :interval "1s" `playerctl metadata --format '{{ title }}'`)
 
-(defpoll img_cover :interval "4s" "sh mus.sh --img")
+(defpoll img_cover :interval "3s" "sh mus.sh --img")
 (defpoll duration_second :interval "1s" "echo `playerctl metadata -f  ' {{ position / 1000000}} '`")
 (defpoll duration_lim :interval "1s" " echo `playerctl metadata -f  ' {{ (mpris:length / 1000000) }} '`")
-(deflisten counting :initial "n/a" "playerctl metadata -F -f  '{{ duration(position)}}'")
+(defpoll counting :interval "1s" "playerctl metadata -f  '{{ duration(position)}}'")
 (defpoll duration :interval "2s" "playerctl metadata -f ' {{ duration(mpris:length) }} '")
 
 ;;date-time polls
@@ -30,18 +30,19 @@
        :orientation "h"
        :tooltip full_title
     (box :orientation "h" :space-evenly false 
-      ;;(image :vexpand false :halign "center " 
-       ;;      :class "artcover" :image-width 80 
-       ;;      :image-height 100 :path img_cover
-     ;; )
-      (box :vexpand false :halign "center" :class "artcover"
-           :style "
-           background-image:url('${img_cover}');
-           background-repeat:no-repeat;
-           background-size:80px 50px;
-           background-position:center"
+      (image :vexpand false :halign "center" 
+            :class "artcover" :image-width 100 
+            :image-height 100 :path img_cover
       )
     )
+      ;;(box :vexpand false :halign "center" :class "artcover"
+      ;;     :style "
+       ;;    background-image:{img_cover};
+        ;;   background-repeat:no-repeat;
+       ;;    background-size:80px 50px;
+       ;;    background-position:center"
+     ;; )
+    ;;)
     (box :class "main" :orientation "v" :space-evenly false 
         (label :class "m_width" :orientation "v" :text " ")
         (box :class "mus-title-and-artist" :hexpand false :orientation "v"
