@@ -1,6 +1,7 @@
 ;;other .yuck files
 (include "temp_full.yuck")
 (include "volume_slide.yuck")
+(include "mus_player.yuck")
 ;;eww vars
 (defvar eww "eww -c $HOME/.config/eww")
 (defvar rev_cal false)
@@ -22,69 +23,6 @@
 (defpoll day :interval "10h" "date \"+%d\"")
 (defpoll dayinweek :interval "1h" "date \"+%a\"")
 (defpoll hour :interval "2s" "date \"+%H:%M\"")
-(defwidget music []
-  (box :class "music"
-  	   :vexpand false 
-  	   :hexpand false
-       :space-evenly false
-       :orientation "h"
-       :tooltip full_title
-    (box :orientation "h" :space-evenly false 
-      (image :vexpand false :halign "center" 
-            :class "artcover" :image-width 100 
-            :image-height 100 :path img_cover
-      )
-    )
-      ;;(box :vexpand false :halign "center" :class "artcover"
-      ;;     :style "
-       ;;    background-image:{img_cover};
-        ;;   background-repeat:no-repeat;
-       ;;    background-size:80px 50px;
-       ;;    background-position:center"
-     ;; )
-    ;;)
-    (box :class "main" :orientation "v" :space-evenly false 
-        (label :class "m_width" :orientation "v" :text " ")
-        (box :class "mus-title-and-artist" :hexpand false :orientation "v"
-            (box :orientation "v" :space-evenly false  
-                (label :class "mus-title" :hexpand false :limit-width 28
-                    :text "${full_title}"
-                )
-                (label :halign "end" :class "artist" :limit-width 16 :text artist)
-            )
-        )
-        (box :orientation "h" :space-evenly false :halign "center"
-          (label :class "dur"  :text counting )
-          (scale :class "duration-bar" :halign "center"
-                 :min 0 
-                 :active true
-                 :max duration_lim
-                 :width 180
-                 :value duration_second
-                 :onchange "playerctl position {}"
-                
-                )
-          (label :class "dur"  :text duration )
-        )
-        (box :class "controlling-box" :orientation "h" :hexpand false
-          :space-evenly false :halign "center"
-            (button :class "prev" :onclick `playerctl previous` "󰒮")
-            (button :class "stepfb" :onclick `playerctl position "${duration_second - 5}"` "󰓕")
-            (button :class "active" :onclick `playerctl play-pause`{ status == "Playing" ? "": ""})
-            (button :class "stepfb" :onclick `playerctl position "${duration_second + 5}"` "󰓗")
-            (button :class "next" :onclick `playerctl next` "󰒭") 
-        )
-     )
-     
-    
-   
-     
-    
-
-    
-
-   )
-)
 (defwidget sub_calendr []
   (eventbox  
     :onhover "${eww} update rev_cal=true && ${eww} update cal_win_width='300px' "
@@ -116,6 +54,7 @@
    ) 
   )
 )
+
 (defwindow ma 
 	:focusable false :screen 1
 	:vexpand false
@@ -151,7 +90,7 @@
   :focusable false :screen 1
   :vexpand false
   :hexpand false
-  :geometry (geometry :x 840 :y -330 :anchor "center")
+  :geometry (geometry :x 830 :y -330 :anchor "center")
   (vol_slidr)
 )
   
