@@ -1,0 +1,88 @@
+(defvar change_ctrl_box true)
+(defwidget music []
+  (box :class "music"
+  	   :vexpand false 
+  	   :hexpand false
+       :space-evenly false
+       :orientation "h"
+       :tooltip full_title
+    (box :orientation "h" :space-evenly false 
+      (image :vexpand false :halign "center" 
+            :class "artcover" :image-width 100 
+            :image-height 100 :path img_cover
+      )
+    )
+      ;;(box :vexpand false :halign "center" :class "artcover"
+      ;;     :style "
+       ;;    background-image:{img_cover};
+        ;;   background-repeat:no-repeat;
+       ;;    background-size:80px 50px;
+       ;;    background-position:center"
+     ;; )
+    ;;)
+    (box :class "main" :orientation "v" :space-evenly false 
+        (label :class "m_width" :orientation "v" :text " ")
+        (box :class "mus-title-and-artist" :hexpand false :orientation "v"
+            (box :orientation "v" :space-evenly false  
+                (label :class "mus-title" :hexpand false :limit-width 28
+                    :text "${full_title}"
+                )
+                (label :halign "end" :class "artist" :limit-width 16 :text artist)
+            )
+        )
+        (box :orientation "h" :space-evenly false :halign "center"
+          (label :class "dur"  :text counting )
+          (scale :class "duration-bar" :halign "center"
+                 :min 0 
+                 :active true
+                 :max duration_lim
+                 :width 180
+                 :value duration_second
+                 :onchange "playerctl position {}" 
+                )
+          (label :class "dur"  :text duration )
+        )
+        
+       
+      (box  :class "controlling-box" :orientation "h" 
+            :hexpand false :space-evenly false 
+            :halign "center"
+           (revealer
+            :reveal "${change_ctrl_box}"
+            :transition "slideleft"
+            :duration "250ms"
+            (box :orientation "h" :space-evenly false 
+              :style "border-radius:8px;background-color:#1f0f01;"
+              (button :class "prev" :onclick `playerctl previous` "⠀󰒮")
+              (button :class "stepfb" :onclick `playerctl position "${duration_second - 5}"` "󰓕")
+              (button :class "active" :onclick `playerctl play-pause`{ status == "Playing" ? "": ""})
+              (button :class "stepfb" :onclick `playerctl position "${duration_second + 5}"` "󰓗")
+              (button :class "next" :onclick `playerctl next` "󰒭⠀") 
+            )
+          )
+           (revealer
+            :reveal "${!change_ctrl_box}"
+            :transition "slideleft"
+            :duration "250ms"
+            (box :orientation "h" :space-evenly false :style "border-radius:8px;background-color:#1f0f01;"
+              (button :class "stepfb" :next `playerctl suffle Toggle` "󰒟")
+              (button :class "active" :onclick `playerctl loop Track` "󰑙")
+              (button :class "stepfb" :next `playerctl loop None` "󰶕")
+
+            )
+           )
+        (box :halign "end" :space-evenly false :orientation "v" 
+          (button
+          :class "next"
+          :style "margin-left:1em;margin-right:-3em;background-color:unset;color:#ffb952;"
+          :onclick "${eww} update change_ctrl_box=${!change_ctrl_box}" {change_ctrl_box ? "󰘴" : ""}
+          )
+      )
+
+      )
+     
+        
+    )
+   )
+)
+
