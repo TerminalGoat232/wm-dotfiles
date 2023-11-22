@@ -1,18 +1,26 @@
 (defpoll current_vol_val :interval "0s" " pactl get-sink-volume @DEFAULT_SINK@ | grep front-right | awk -F'/' '{print $2}' | cut -b 3-4")
 (defwidget vol_slidr []
-    (box :class "vmain_box" :space-evenly false
-        (box :class "v_wget" :space-evenly false
+
+        (box :class "v_wget" :space-evenly false :halign "center" :orientation "h"
+          (box :orientation "v" 
+                :style "padding:1em;background-color:#ffb952;font-size:7px;"
+            (label :text "" :style "font-size:28px;")  
+          )
+          (label :text "⠀")
           (scale :class "scler"
                  :orientation "h"
-                 :min 0 :max 100
+                 :halign "center"
+                 :min 0 :max 101
                  :height 0
-                 :width 250
+                 :width 180
+                 :space-evenly false
                  :flipped false
                  :value current_vol_val
                  :onchange "pactl set-sink-volume @DEFAULT_SINK@ {}%"
           )
+          (label
+            :text "⠀"
+          )
         )
-
-    )
 )
 
