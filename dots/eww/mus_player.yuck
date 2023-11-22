@@ -1,4 +1,16 @@
 (defvar change_ctrl_box true)
+;;music polls
+(defpoll status :interval "1s" `playerctl status`)
+;;(defpoll title :interval "1s" "sh mus.sh --title")
+(defpoll artist :interval "1s" "sh mus.sh --artist_only")
+(defpoll full_title :interval "1s" `playerctl metadata --format '{{ title }}'`)
+
+(defpoll img_cover :interval "3s" "sh mus.sh --img")
+(defpoll duration_second :interval "1s" "echo `playerctl metadata -f  ' {{ position / 1000000}} '`")
+(defpoll duration_lim :interval "1s" " echo `playerctl metadata -f  ' {{ (mpris:length / 1000000) }} '`")
+(defpoll counting :interval "1s" "playerctl metadata -f  '{{ duration(position)}}'")
+(defpoll duration :interval "2s" "playerctl metadata -f ' {{ duration(mpris:length) }} '")
+
 (defwidget music []
   (box :class "music"
   	   :vexpand false 
