@@ -38,19 +38,19 @@ TERM = "xterm-256color"
 size = 10.0
 
 [font.bold]
-family = "JetBrains Mono Nerd Font"
+family = "JetBrains Mono NF"
 style = "Bold"
 
 [font.bold_italic]
-family = "JetBrains Mono Nerd Font"
+family = "JetBrains Mono NF"
 style = "Bold Italic"
 
 [font.italic]
-family = "JetBrains Mono Nerd Font"
+family = "JetBrains Mono NF"
 style = "Italic"
 
 [font.normal]
-family = "JetBrains Mono Nerd Font"
+family = "JetBrains Mono NF"
 style = "Regular"
 
 [font.offset]
@@ -141,6 +141,30 @@ key = "End"
 mode = "~Alt"
 mods = "Shift"
 
+#[schemes.GruvboxDark.bright]
+#black = "#7f6962"
+#blue = "#Fe7836"
+#cyan = "#FF8A61"
+#green = "#b5881f"
+#magenta = "#FF5C5C"
+#red = "#FF4B3B"
+#white = "#ffc699"
+#yellow = "#FFA63E"
+
+#[schemes.GruvboxDark.normal]
+#black = "#291c0b"
+#blue = "#FF8A61"
+#cyan = "#FF6700"
+#green = "#FFAE07"
+#magenta = "#FF5C5C"
+#red = "#FF3B3B"
+#white = "#ffc699"
+#yellow = "#F2675f"
+
+#[schemes.GruvboxDark.primary]
+#background = "#2d1c0a"
+#foreground = "#ffc699"
+
 [scrolling]
 history = 5000
 
@@ -158,5 +182,5 @@ general = "Alacritty"
 instance = "Alacritty"
 
 [window.padding]
-x = 12
-y = 10
+x = 15
+y = 20
