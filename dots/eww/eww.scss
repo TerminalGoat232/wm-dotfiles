@@ -1,4 +1,6 @@
-
+*{
+  font-family: "JetBrains Mono NF";
+}
 
 .wther_in4{
   background-color:#2d1a09;
@@ -8,12 +10,11 @@
  color:#ff8f42;
  margin-left:15px;
  margin-top:15px;
- font-family:Noto Mono Nerd Font;
  font-size:14px;
 }
 .precip{
   color:#ff9a4b;
-  font-family:Noto Mono Nerd Font;
+
   font-size:14px;
   margin-bottom:-100px;
   margin-left:-32px;
@@ -22,7 +23,7 @@
 
 .delta_temp{
   color:#ff9a4b;
-  font-family:Noto Mono Nerd Font;
+
   font-size:14px;
   margin-bottom:-60px;
   margin-left:-35px;
@@ -31,14 +32,14 @@
   color:#ff9a4b;
   margin-top:60px;
   margin-left:-135px;
-  font-family:Noto Mono Nerd Font;
+
   font-size:14px;
 }
 .uv_i{
   color:#ff9a4b;
   margin-top:15px;
   margin-left:15px;
-  font-family:Noto Mono Nerd Font;
+
   font-size:14px;
 
 }
@@ -46,7 +47,7 @@
   color:#ff9a4b;
   margin-top:100px;
   margin-left:-200px;
-  font-family:Noto Mono Nerd Font;
+ 
   font-size:14px;
 
 }
@@ -63,7 +64,7 @@
   margin-right:5px;
 //  margin-right:-170px;
   border-radius:8px;
-  font-family: Noto Mono Nerd Font;
+
   font-size:30px;
 }
 .tempoutr{
@@ -74,7 +75,7 @@
   border-radius:8px;
   font-size:30px;
   margin-bottom:110px;
-  font-family: Noto Mono Nerd Font;
+
 
 }
 .wther_ic{
@@ -85,7 +86,7 @@
   font-size:50px;
   margin-top:10px;
   margin-bottom:110px;
-  font-family: Noto Mono Nerd Font;
+
 }
 .t1{
   margin-bottom:140px;
@@ -107,7 +108,6 @@
   border-radius:10px;
   background-color:#1d1d1d;
   font-size : 11px;
-  font-family: Noto Mono Nerd Font;
 }
 
 .calendr{
@@ -117,7 +117,6 @@
   //min-height:150px;
   //min-width:160px;
   font-size : 40px;
-  font-family: Noto Mono Nerd Font;
 
   font-weight : bold;
 }
@@ -162,7 +161,8 @@
    background-color:#1e1000;
    border-radius:1em;
    //margin-top:2em;
-   padding-right:6em;
+   padding-right:1em;
+   padding-left:1em;
  }
 
 .mus-title {
@@ -184,7 +184,8 @@
   color:#fca118; 
   background-color:unset;
   //margin: 4.5em -1em 1em 1em;
-
+  margin-left:-0.5em;
+  margin-right:-0.5em;
   border-radius:10px;
   border:none;
 
@@ -195,8 +196,7 @@
   //margin: 4.5em 1em 1em 1em;
   border-radius:10px;
   border:none;
-  margin-left:-0.5em;
-  margin-right:-0.5em;}
+}
 .stepfb {
   background-color: unset;
   color:#ff8f42;
@@ -216,10 +216,9 @@
   color: #341d04;
   background-color:#ffb962;
   font-size : 11px;
-  //font-style : italic;
   border-radius:10px;
   margin-right:1em;
-  margin-top:0.5em;
+  margin-top:0.8em;
 }
 slider {
   background-color: unset;
@@ -238,14 +237,14 @@ slider {
 .scler trough    {
  background-color:#291703;
  border-radius:5px;
- border: solid #ffb962 2px;
+ border: solid #ffb952 2px;
 }
 .duration-bar trough {
   background-color:#291703;
 }
 
 .scler highlight, .duration-bar highlight {
-  background-color:#ffb962;
+  background-color:#ffb952;
 }
 .v_wget  {
   //margin:3px 3px 3px 4px;
@@ -275,14 +274,12 @@ slider {
    
 }
 .deco_2{
-    font-family: Noto Mono Nerd Font;
     color: #ff9a4b;
     font-size:50px;
     border-radius:45px;   
     margin-left:30px;
    }
 .deco_3{
-    font-family: Noto Mono Nerd Font;
     color: #1e1000;
     border-radius:4px;
     background-color:#ff9a4b;
@@ -297,7 +294,6 @@ slider {
     background-color:#2d1a09;
     font-size:25px;
     border-radius:10px;
-   // border:5px #1d1d1d;
     margin-left:-60px;
     margin-right:20px;
     margin-top:130px;
