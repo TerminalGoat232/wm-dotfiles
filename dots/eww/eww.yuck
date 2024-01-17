@@ -5,18 +5,18 @@
 ;;eww vars
 (defvar eww "eww -c $HOME/.config/eww")
 (defvar rev_cal false)
-(defvar cal_win_width "400px")
+;;(defvar cal_win_width "400px")
 ;;music polls
-(defpoll status :interval "1s" `playerctl status`)
+;;(defpoll status :interval "1s" `playerctl status`)
 ;;(defpoll title :interval "1s" "sh mus.sh --title")
-(defpoll artist :interval "1s" "sh mus.sh --artist_only")
-(defpoll full_title :interval "1s" `playerctl metadata --format '{{ title }}'`)
+;;(defpoll artist :interval "1s" "sh mus.sh --artist_only")
+;;(defpoll full_title :interval "1s" `playerctl metadata --format '{{ title }}'`)
 
-(defpoll img_cover :interval "3s" "sh mus.sh --img")
-(defpoll duration_second :interval "1s" "echo `playerctl metadata -f  ' {{ position / 1000000}} '`")
-(defpoll duration_lim :interval "1s" " echo `playerctl metadata -f  ' {{ (mpris:length / 1000000) }} '`")
-(defpoll counting :interval "1s" "playerctl metadata -f  '{{ duration(position)}}'")
-(defpoll duration :interval "2s" "playerctl metadata -f ' {{ duration(mpris:length) }} '")
+;;(defpoll img_cover :interval "3s" "sh mus.sh --img")
+;;(defpoll duration_second :interval "1s" "echo `playerctl metadata -f  ' {{ position / 1000000}} '`")
+;;(defpoll duration_lim :interval "1s" " echo `playerctl metadata -f  ' {{ (mpris:length / 1000000) }} '`")
+;;(defpoll counting :interval "1s" "playerctl metadata -f  '{{ duration(position)}}'")
+;;(defpoll duration :interval "2s" "playerctl metadata -f ' {{ duration(mpris:length) }} '")
 
 ;;date-time polls
 (defpoll month :interval "10h" "date \"+%b\"")
@@ -25,7 +25,7 @@
 (defpoll hour :interval "2s" "date \"+%H:%M\"")
 (defwidget sub_calendr []
   (eventbox  
-    :onhover "${eww} update rev_cal=true && ${eww} update cal_win_width='300px' "
+    :onhover "${eww} update rev_cal=true"
     :onhoverlost " ${eww} update rev_cal=false"
    (box  :class "calendr" :orientation "v" :space-evenly false 
         (box :class "day" :space-evenly false {day})
@@ -82,7 +82,7 @@
  :vexpand false
  :hexpand false
  :windowtype "dialog"
- :geometry (geometry :x -400 :y -260 :width "14%" :anchor "center")
+ :geometry (geometry :x -735 :y -260 :width "14%" :anchor "center")
  (chng_loc)
 )
 (defwindow vol_slider

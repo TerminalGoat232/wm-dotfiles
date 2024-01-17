@@ -66,7 +66,7 @@
 )
 (defwidget chng_loc []
     (box :class "chng_locc" :space-evenly false
-         (label :class "deco_1" :text "  ") 
+         (label :class "deco_1" :text " 󰙐 ") 
          
          (input :class "loc_input" :width 200 :value 'your region goes here' :onaccept "sh $HOME/.config/eww/input_handle_lc.sh '{}'")
          (label :class "deco_2" :text "")

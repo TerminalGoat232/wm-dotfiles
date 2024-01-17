@@ -69,7 +69,7 @@
               (button :class "stepfb" :onclick `playerctl position "${duration_second - 5}"` "󰓕")
               (button :class "active" :onclick `playerctl play-pause`{ status == "Playing" ? "": ""})
               (button :class "stepfb" :onclick `playerctl position "${duration_second + 5}"` "󰓗")
-              (button :class "next" :onclick `playerctl next` "󰒭⠀") 
+              (button :class "next" :onclick `playerctl next` "󰒭 ") 
             )
           )
            (revealer
@@ -77,9 +77,9 @@
             :transition "slideleft"
             :duration "250ms"
             (box :orientation "h" :space-evenly false :style "border-radius:8px;background-color:#1f0f01;"
-              (button :class "stepfb" :next `playerctl suffle Toggle` "󰒟")
+              (button :class "stepfb" :next `playerctl suffle Toggle` " 󰒟")
               (button :class "active" :onclick `playerctl loop Track` "󰑙")
-              (button :class "stepfb" :next `playerctl loop None` "󰶕")
+              (button :class "stepfb" :next `playerctl loop None` "󰶕 ")
 
             )
            )

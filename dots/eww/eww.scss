@@ -163,6 +163,7 @@
    //margin-top:2em;
    padding-right:1em;
    padding-left:1em;
+   margin-left:-1.5em;
  }
 
 .mus-title {
@@ -184,8 +185,8 @@
   color:#fca118; 
   background-color:unset;
   //margin: 4.5em -1em 1em 1em;
-  margin-left:-0.5em;
-  margin-right:-0.5em;
+  margin-left:-0.1em;
+  margin-right:-0.1em;
   border-radius:10px;
   border:none;
 
@@ -193,6 +194,7 @@
 .prev, .next{
   //margin-right: 0.5em;
   background-color:unset;
+  color:#ffb962;
   //margin: 4.5em 1em 1em 1em;
   border-radius:10px;
   border:none;
@@ -200,6 +202,7 @@
 .stepfb {
   background-color: unset;
   color:#ff8f42;
+  margin-left:0.1em;
   border:none;
 }
 .ma {
@@ -216,6 +219,8 @@
   color: #341d04;
   background-color:#ffb962;
   font-size : 11px;
+  padding-top:0.2em;
+  padding-bottom:0.2em;
   border-radius:10px;
   margin-right:1em;
   margin-top:0.8em;
@@ -226,13 +231,14 @@ slider {
   
 }
 .duration-bar slider{
-  margin: -7px;
+  margin: -5px;
+
 }
 .duration-bar {
   margin-top:1em;
 }
 .scler slider {
-  margin:-2px;
+  margin:-1px;
 }
 .scler trough    {
  background-color:#291703;
@@ -269,7 +275,8 @@ slider {
     font-size:30px; 
     color: #FF885d;
     background-color:#251004 ;
-    margin-left:-0.2em;
+    margin-left:0em;
+    padding-left:0.2em;
     margin-top:-0.2em;
    
 }
