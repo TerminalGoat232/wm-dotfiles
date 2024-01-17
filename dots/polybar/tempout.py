@@ -6,7 +6,7 @@ from time import *
 from dataclasses import dataclass
 get_dat_from_url=''
 
-region='insert ur region here'
+region='thua-thien-thuy-xuan'
 
 try:
 	with urllib.request.urlopen(f"https://wttr.in/{region}?format=%t+%f+%c+%h+%w+%P+%u+%m+%M+%p") as h: get_dat_from_url=h.read().decode(h.headers.get_content_charset())
@@ -22,13 +22,13 @@ class wther:
 		self.main_dat=get_dat_from_url.split()
 		for y in range(0,len(wthalist)):
 			if wthalist[y] in self.main_dat[2] and self.time in range(18,24):
-				self.weather=" 望 "+wthareplacements[y]
+				self.weather="  "+wthareplacements[y]
 			elif wthalist[y] in self.main_dat[2] and self.time in range(0,7):
 				self.weather="  "+wthareplacements[y]
 			elif wthalist[y] in self.main_dat[2] and self.time in range(7,13):
-				self.weather=" 滛 "+wthareplacements[y]
+				self.weather="  "+wthareplacements[y]
 			elif wthalist[y] in self.main_dat[2] and self.time in range(13,18):
-				self.weather=" 漢 "+wthareplacements[y]
+				self.weather="  "+wthareplacements[y]
 		self.temp=" "+self.main_dat[0]+" ["+self.main_dat[1]+"] "
 	def getWeather(self):return self.weather
 	def getATemp_RFeel(self):return self.temp
@@ -44,7 +44,7 @@ class wther:
 if __name__ == "__main__":
 	try:
 		m = wther([])
-		print(m.getWeather(),m.getATemp_RFeel(),end="")
+		print(m.getWeather(),m.getRTemp(),end="")
 	except:pass
 	sleep(5)
 
