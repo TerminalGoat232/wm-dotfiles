@@ -40,7 +40,7 @@
                       :reveal "${rev_fu_inf}"
                       :transition "slideright"
                       :duration "350ms"
-                      (label :class "t2" :space-evenly false :text "⠀Real ")
+                      (label :class "t2" :space-evenly false :text "⠀Feel ")
                   ) 
                   (revealer
                       :reveal "${!rev_fu_inf}"
