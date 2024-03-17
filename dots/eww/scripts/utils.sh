@@ -5,7 +5,7 @@ core_temp(){
   echo $(sensors | grep "CPU" | awk '{print substr($2,2)}')
 }
 swap_used_perc(){
-  res=$((($swp_used/16)*100))
+  res=$(bc <<<"scale=3; $swp_used * 0.00625")
   printf "%.0f\n" $res
 }
 
