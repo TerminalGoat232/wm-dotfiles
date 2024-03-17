@@ -105,22 +105,7 @@
 
   margin-bottom:140px;
 }
-.cal{
-  border-radius:10px;
-  background-color:#1d1d1d;
-  font-size : 11px;
-}
 
-.calendr{
-  margin: 30px;
-  background-color:#282828;
-  border-radius:1px;
-  //min-height:150px;
-  //min-width:160px;
-  font-size : 40px;
-
-  font-weight : bold;
-}
 .diw{
     margin-left: 30px;
     margin-bottom:10px;
@@ -133,21 +118,7 @@
     
     
 }
-.slash{
-  margin-top:15px; 
-  color:#ff9a4b;
-}
-.day{
- background-color:#282828;
- color:#E9A178; 
- margin-bottom: 80px;
-}
-.month{
- margin-top:80px;
- margin-right:10px;
- background-color:#282828;
- color:#A84448;
-}
+
 
 ////////////////////////MUSIC PLAYER/////////////////////
 .controlling-box{
@@ -309,5 +280,51 @@ slider {
     margin-top:130px;
     margin-bottom:20px;
 }
-
-
+// ----- dock ----- 
+.dock {
+  all:unset;
+}
+.bar_main_cont {
+  font-size:13px;
+  background-color:#2d1a09;
+  margin-left:1em; 
+  margin-top:0.5em;
+  padding: 5px 15px 5px 15px;
+  border-radius: 8px;
+}
+.comp1{
+ color:#ff9a4b;
+ margin-left:0.8em;
+}
+.temp_deco{
+  background-color:#ff9a4b;
+  color:#1e1000;
+  border-radius:8px;
+  padding: 2px 8px 2px 8px;
+}
+.swap_deco {
+  border-radius: inherit;
+  margin-left:1em;
+  padding-left:8px;
+  padding-right:8px;
+  background-color:#B09242;
+  color: #1e1000;
+}
+.comp2 {
+  margin-left:0.5em;
+  color:#B09242;
+}
+.c_prog1 {
+  background-color:#593D1E; 
+}
+.swp{
+  color:#2d1a09;
+  font-size:30px;
+}
+.outside_temp {
+  border-radius: inherit;
+  margin-left:1em;
+  background-color:#e87b5a;
+  color:#1e1000;
+ 
+}

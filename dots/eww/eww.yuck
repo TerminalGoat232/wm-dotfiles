@@ -2,14 +2,17 @@
 (include "temp_full.yuck")
 (include "volume_slide.yuck")
 (include "mus_player.yuck")
+(include "alt_bar.yuck")
 ;;eww vars
 (defvar eww "eww -c $HOME/.config/eww")
 (defvar rev_cal false)
+
 ;;date-time polls
 (defpoll month :interval "10h" "date \"+%b\"")
 (defpoll day :interval "10h" "date \"+%d\"")
 (defpoll dayinweek :interval "1h" "date \"+%a\"")
 (defpoll hour :interval "2s" "date \"+%H:%M\"")
+;; wip
 (defwidget sub_calendr []
   (eventbox  
     :onhover "${eww} update rev_cal=true"
@@ -80,4 +83,16 @@
   :geometry (geometry :x 830 :y -330 :anchor "center")
   (vol_slidr)
 )
+(defwindow dock
+           :monitor 0
+           :geometry (geometry :anchor "top center")
+           :stacking "fg"
+           :reserve (struts :distance "8%" :side "top")
+           :windowtype "dock"
+           :exclusive true
+           :wm-ignore false
+  (main_bar)
+)
+
+
   

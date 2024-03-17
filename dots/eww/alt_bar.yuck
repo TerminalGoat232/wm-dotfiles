@@ -1,0 +1,60 @@
+
+(defpoll core_temp :interval "3s" "sh ./scripts/utils.sh -c")
+(defpoll swp_usage_perc :interval "3s" "sh ./scripts/utils.sh -sp")
+
+
+(defwidget left []
+  (box :orientation "h" 
+		 :space-evenly false  
+     :halign "start"
+     (bar1)
+  )
+)
+(defwidget main_bar []
+  (left)
+)
+(defwidget bar1 []
+  (box :class "bar_main_cont"
+      :orientation "h" :space-evenly false :vexpand false
+      ;;----- core temeperature -----
+      (box :class "temp_deco"
+        :hexpand false
+        :space-evenly true
+        :halign "start" 
+        (label :halign "start" :text "")
+      )
+      (box :class "comp1"
+        :space-evenly true
+        :orientation "v"
+        :halign "center"
+        (label :class "ss" :text {core_temp})
+      )
+      ;;----- swap usage -----
+      (box :class "swap_deco"
+        :hexpand false
+        :space-evenly true
+        :halign "start"
+        (label :halign "start" :text "󰓡")
+      )
+      (box :class "comp2"
+        :space-evenly true
+        :orientation "v"
+        :halign "center"
+        (circular-progress 
+          :class "c_prog1" 
+          :value swp_usage_perc 
+          :vexpand false
+          :clockwise true
+          :thickness 5 
+          (label :show_truncated false :wrap false :limit-width 2 :class "swp" :text "")
+        )
+      )
+      (box :class "outside_temp"
+        :hexpand false
+        :space-evenly true 
+        :orientation "v"
+        (label :text {temp})
+      )
+  )
+)
+
