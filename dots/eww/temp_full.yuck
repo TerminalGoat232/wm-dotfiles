@@ -1,68 +1,97 @@
 (defvar rev_fu_inf false)
 ;;(defvar eww "eww -c $HOME/.config/eww")
-(defpoll air_cond :interval "1m" "python3 ~/.config/polybar/air.py")
-(defpoll humidity :interval "1m" "python3 ~/.config/polybar/hum.py")
-(defpoll uv_i :interval "1m" "python3 ~/.config/polybar/uv.py")
-(defpoll wind_cond :interval "50s" "python3 ~/.config/polybar/wind.py")
-(defpoll temp :interval "1m" "python3 ~/.config/polybar/atemp.py")
-(defpoll rtemp :interval "1m" "python3 ~/.config/polybar/rtemp.py")
-(defpoll wther_ic :interval "1m" "python3 ~/.config/polybar/weather.py")
-(defpoll moon_phase :interval "1m" "python3 ~/.config/polybar/moon_phase.py")
-(defpoll delta_temp :interval "1m" "python3 ~/.config/polybar/delta_temp.py")
-(defpoll precipitation :interval "1m" "python3 ~/.config/polybar/precip.py")
+;;(deflisten air_cond "python3 ~/.config/polybar/air.py")
+;;(deflisten humidity "python3 ~/.config/polybar/hum.py")
+;;(deflisten uv_i "python3 ~/.config/polybar/uv.py")
+;;(deflisten wind_cond "python3 ~/.config/polybar/wind.py")
+;;(deflisten temp "python3 ~/.config/polybar/atemp.py")
+;;(deflisten rtemp "python3 ~/.config/polybar/rtemp.py")
+;;(deflisten wther_ic "python3 ~/.config/polybar/weather.py")
+;;(deflisten moon_phase "python3 ~/.config/polybar/moon_phase.py")
+;;(deflisten delta_temp "python3 ~/.config/polybar/delta_temp.py")
+;;(deflisten precipitation "python3 ~/.config/polybar/precip.py")
+
+(deflisten air_cond "sh ~/.config/eww/scripts/weather_status.sh -a")
+(deflisten humidity "sh ~/.config/eww/scripts/weather_status.sh -h")
+(deflisten uv_i "sh ~/.config/eww/scripts/weather_status.sh -u")
+(deflisten wind_cond "sh ~/.config/eww/scripts/weather_status.sh -W")
+(deflisten temp "sh ~/.config/eww/scripts/weather_status.sh -t")
+(deflisten rtemp "sh ~/.config/eww/scripts/weather_status.sh -T")
+(deflisten wther_ic "sh ~/.config/eww/scripts/weather_status.sh -b")
+(deflisten time_session "sh ~/.config/eww/scripts/weather_status.sh -s")
+(deflisten moon_phase "sh ~/.config/eww/scripts/weather_status.sh -m")
+(deflisten delta_temp "sh ~/.config/eww/scripts/weather_status.sh -d")
+(deflisten precipitation "sh ~/.config/eww/scripts/weather_status.sh -p")
+
 
 (defwidget temp_f []
-     (box :class "wther_in4" :space-evenly false
-       
-        (label :class "air_cond" :space-evenly false :text "${air_cond}")
-        (label :class "humidity" :space-evenly false :text "${humidity}")
-        (label :class "uv_i" :space-evenly false :text "${uv_i}")
-        (label :class "wind_cond" :space-evenly false :text "${wind_cond}")
-        (label :class "wther_ic" :halign "start" :hexpand false :vexpand false :space-evenly false :text "${wther_ic}")
-        (label :class "delta_temp" :space-evenly false :text "${delta_temp}")
-        (label :class "precip" :space-evenly false :text "${precipitation}")
-
-        
+     (box :class "wther_in4" :space-evenly false :orientation "h"
+          
+        (box :class "info1" :orientation "v" :vexpand false :hexpand false :space-evenly false
+          (box :class "cf0" :orientation "v"
+            (label :class "wther_ic" :halign "center" :hexpand false :vexpand false :space-evenly false :text "${wther_ic}")
+          )
+          (box :class "cf1" :orientation "h" :vexpand false :hexpand false :space-evenly false 
+            (label :class "air_cond" :space-evenly false :text "${air_cond}")
+            (label :class "humidity" :space-evenly false :text "${humidity}")
+          )
+          (box :class "cf2" :orientation "h" :vexpand false :hexpand false :space-evenly false
+            (label :class "wind_cond" :space-evenly false :text "${wind_cond}")
+            (label :class "uv_i" :orientation "v" :space-evenly false :text "${uv_i}")
+          )
+          (box :class "cf3" :orientation "h" :vexpand false :hexpand false :space-evenly false 
+            (label :class "precip" :space-evenly false :text "${precipitation}")
+            (label :class "delta_temp" :space-evenly false :text "${delta_temp}")           
+          )
+        )
         (eventbox
             :onhover "${eww} update rev_fu_inf=true"
-            :onhoverlost "${eww} update rev_fu_inf=false"
-            
-
-            
-            (box :class "b1" :space-evenly false
+            :onhoverlost "${eww} update rev_fu_inf=false" 
+            (box :class "b1" :space-evenly false :orientation "h" :hexpand false
                   (revealer 
                       :reveal "${!rev_fu_inf}"
                       :transition "slideleft"
-                      :duration "350ms" 
-                      (label :class "t1" :space-evenly false :text "Actual")
+                      :duration "350ms"
+                      (box :class "bx-a1" :orientation "v" :hexpand false :space-evenly false
+                        (label :class "t1" :space-evenly false :text "Actual")
+                      ) 
                   )
                   (revealer 
                       :reveal "${rev_fu_inf}"
                       :transition "slideright"
                       :duration "350ms"
+                     (box :class "bx-a1" :orientation "v" :hexpand false :space-evenly false 
                       (label :class "t2" :space-evenly false :text "⠀Feel ")
-                  ) 
-                  (revealer
-                      :reveal "${!rev_fu_inf}"
-                      :transition "slideleft"
-                      :duration "300ms" 
-                      (label :class "tempout" :space-evenly false :text "${temp}")
-                   )
-
-                  (revealer
-                      :reveal "${rev_fu_inf}"
-                      :transition "slideright" 
-                      :duration "300ms"
-                      (label :class "tempoutr" :space-evenly false :text "${rtemp}") 
+                     )
                   )
-
-          )
-        )
-    (label :class "moon_phase" :space-evenly false :text "${moon_phase}")
-    (button :class "btt_options" 
-            :onclick `eww open changeloc`"..." 
-    )
-    )
+                  (box :orientation "v" :space-evenly false :vexpand false :hexpand false :valign "end" :halign "start"
+                    (box :class "plc-h" :orientation "h" :vexpand "false" :hexpand false :space-evenly false
+                      (revealer
+                        :reveal "${!rev_fu_inf}"
+                        :transition "slideleft"
+                        :duration "300ms"
+                        (box :class "cu" :orientation "h" :hexpand false :space-evenly false
+                          (label :class "tempout"  :space-evenly false :text "${temp}")
+                        )
+                      )
+                      (revealer
+                        :reveal "${rev_fu_inf}"
+                        :transition "slideright" 
+                        :duration "300ms"
+                        (box :class "cu" :orientation "h" :hexpand false :space-evenly false
+                          (label :class "tempoutr" :space-evenly false :text "${rtemp}") 
+                        )
+                      )
+                    )
+                    (box :class "bx-etc" :orientation "h" :hexpand false :vexpand false :space-evenly false :valign "center"
+                      (label  :class "moon_phase" :space-evenly false :halign "center" :text "${moon_phase}")  
+                      (button  :class "btt_options" 
+                      :onclick `eww open changeloc`"" )
+                    )
+                )     
+            )
+        ) 
+   )
 )
 (defwidget chng_loc []
     (box :class "chng_locc" :space-evenly false
