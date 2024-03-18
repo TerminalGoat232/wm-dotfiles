@@ -2,97 +2,103 @@
   font-family: "Jetbrains Mono NF";
 }
 
+//----------- weather ----------//
 .wther_in4{
   background-color:#2d1a09;
+  padding-top:1em;
 
+}
+.info1{
+  margin-left:1em;
+  margin-bottom:1em;
+  //background-color:#55321E;
+}
+.plc-h{
+  margin-right:1em;
+}
+.bx-etc{
+  margin-bottom:1em;
 }
 .air_cond{
  color:#ff8f42;
- margin-left:15px;
- margin-top:15px;
  font-size:14px;
 }
 .precip{
   color:#ff9a4b;
 
   font-size:14px;
-  margin-bottom:-100px;
-  margin-left:-32px;
+
 
 }
-
 .delta_temp{
   color:#ff9a4b;
 
   font-size:14px;
-  margin-bottom:-60px;
-  margin-left:-35px;
+
 }
 .humidity{
   color:#ff9a4b;
-  margin-top:60px;
-  margin-left:-135px;
+  margin-left:1em;
+}
+.uv_i,.delta_temp{
+  color:#ff9a4b;
+  //margin-top:60px;
+  margin-left:2em;
 
   font-size:14px;
 }
 .uv_i{
   color:#ff9a4b;
-  margin-top:15px;
-  margin-left:15px;
+  //margin-top:15px;
+  //margin-left:15px;
 
   font-size:14px;
 
 }
 .wind_cond{
   color:#ff9a4b;
-  margin-top:100px;
-  margin-left:-200px;
+  //margin-top:100px;
+  //margin-left:-200px;
  
   font-size:14px;
 
 }
 .moon_phase{
-  
-  margin-left:-200px;
-  margin-top:50px;
-  font-size:40px;
+  margin-top:1em;
+  //margin-right:1em;
+  font-size:30px;
 }
 .tempout{
   color:#ff9a4b;
   background-color:#251004;
-  margin-bottom:110px;
+}
+.tempoutr,.tempout{
   margin-top:15px;
   margin-right:5px;
-//  margin-right:-170px;
   border-radius:8px;
-
   font-size:30px;
 }
 .tempoutr{
   background-color:#ff9a4b;
   color:#251004;
-  margin-right:5px;
-  margin-top:15px;
-  border-radius:8px;
-  font-size:30px;
-  margin-bottom:110px;
-
-
 }
 .wther_ic{
 
   color:#ff9a4b;
   border-radius:10px;
-  margin-left:-200px;
+  //margin-left:-200px;
   font-size:50px;
-  margin-top:10px;
-  margin-bottom:110px;
+  //margin-top:10px;
+  //margin-bottom:110px;
+
+}
+.time_session{
+  color:#ff8f42;
+  font-size:50px;
 
 }
 .t1{
-  margin-bottom:140px;
   margin-top:10px;
-
   border-radius:5px;
   background-color:#ff9a4b;
   color:#251004;
@@ -102,10 +108,10 @@
   margin-top:10px;
   border-radius:5px;
   background-color:#251004;
-
-  margin-bottom:140px;
 }
-
+.b1{
+  margin-left: 1em;
+}
 .diw{
     margin-left: 30px;
     margin-bottom:10px;
@@ -118,9 +124,51 @@
     
     
 }
+.chng_locc{
+  background-color:#2d1a09;
+}
+.loc_input{
+  color:#ff9a4b;
+  background-color:#2d1a09;
+  border: unset;
+}
+
+.deco_1{
+    font-size:25px; 
+    color: #2d1a09;
+    border-radius:10px;
+    background-color:#Fc985d ;
+    margin-left:-0.1em;
+    padding-left:0.4em;
+    margin-top:0em;
+   
+}
+.deco_2{
+    color: #ff9a4b;
+    font-size:50px;
+    border-radius:45px;   
+    margin-left:30px;
+   }
+.deco_3{
+    color: #1e1000;
+    border-radius:4px;
+    background-color:#ff9a4b;
+    font-size:20px;
+    border:None;
+    margin-left:-36px;
+    margin-top:20px;
+}
+.btt_options{
+    color:#ff9a4b;
+    background-color:#2d1a09;
+    font-size:25px;
+    margin-right:0.5em;
+    margin-top:1em;
+    border:unset;
+}
 
 
-////////////////////////MUSIC PLAYER/////////////////////
+//----------MUSIC PLAYER----------//
 .controlling-box{
   font-size:1.4rem;
   margin-top: 0.1rem;
@@ -234,52 +282,6 @@ slider {
   min-width:16px;
 }
 
-.chng_locc{
-  background-color:#2d1a09;
-}
-.loc_input{
-  color:#ff9a4b;
-  background-color:#2d1a09;
-  border: None;
-  //margin-left:30px;
-}
-
-.deco_1{
-    font-size:25px; 
-    color: #2d1a09;
-    border-radius:10px;
-    background-color:#Fc985d ;
-    margin-left:-0.1em;
-    padding-left:0.4em;
-    margin-top:0em;
-   
-}
-.deco_2{
-    color: #ff9a4b;
-    font-size:50px;
-    border-radius:45px;   
-    margin-left:30px;
-   }
-.deco_3{
-    color: #1e1000;
-    border-radius:4px;
-    background-color:#ff9a4b;
-    font-size:20px;
-    border:None;
-    margin-left:-36px;
-    margin-top:20px;
-}
-.btt_options{
-    font-family:inherit;
-    color:#ff9a4b;
-    background-color:#2d1a09;
-    font-size:25px;
-    border-radius:10px;
-    margin-left:-60px;
-    margin-right:20px;
-    margin-top:130px;
-    margin-bottom:20px;
-}
 // ----- dock ----- 
 .dock {
   all:unset;
