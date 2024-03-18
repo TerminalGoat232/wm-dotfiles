@@ -1,5 +1,5 @@
 #!/bin/bash
-region='thua-thien-thuy-xuan'
+region='ur region'
 data_source=`curl -sfZ "https://wttr.in/{$region}?format=%t+%f+%c+%h+%w+%P+%u+%m+%p" 2>/dev/null`
 time=$(date +%T)
 dat_list=($data_source)
