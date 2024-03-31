@@ -1,6 +1,6 @@
 # dotfiles
 
-this is my stupid and unfinished i3 config files and stuffs, still cookin'
+this is my dumb, unfinished i3 config files and stuffs, still cookin'
 ### Current 
 ![free](https://github.com/TerminalGoat232/wm-dotfiles/assets/74200268/42b551fa-9f04-42f2-a404-bf835d6e3b33)
 
