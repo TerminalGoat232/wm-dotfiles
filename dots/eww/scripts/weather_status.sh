@@ -50,7 +50,7 @@ delta_t(){
 }
 time_session(){
   res=''
-  trd_time=${time:0:2}
+  trd_time=${time:1:1}
   if [[ $trd_time -ge "4" && $trd_time -le "7" ]]; then res="󰖜⠀"
   elif [[ $trd_time -ge "7" && $trd_time -le "9" ]]; then res="⠀"
   elif [[ $trd_time -ge "9" && $trd_time -le "15" ]]; then res=" 󰖙⠀"
