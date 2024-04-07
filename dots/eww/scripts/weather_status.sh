@@ -1,7 +1,7 @@
 #!/bin/bash
-region='ur region'
-data_source=`curl -sfZ "https://wttr.in/{$region}?format=%t+%f+%c+%h+%w+%P+%u+%m+%p" 2>/dev/null`
-time=$(date +%T)
+region='thua-thien-thuy-xuan'
+data_source=`curl -Z "https://wttr.in/{$region}?format=%t+%f+%c+%h+%w+%P+%u+%m+%p" 2>/dev/null`
+time=$(date +%H)
 dat_list=($data_source)
  
 #some notation
@@ -49,14 +49,13 @@ delta_t(){
   echo "󰇂C" $(echo $data_source | awk '{print $2-$1}')
 }
 time_session(){
-  res=''
-  trd_time=${time:1:1}
-  if [[ $trd_time -ge "4" && $trd_time -le "7" ]]; then res="󰖜⠀"
-  elif [[ $trd_time -ge "7" && $trd_time -le "9" ]]; then res="⠀"
-  elif [[ $trd_time -ge "9" && $trd_time -le "15" ]]; then res=" 󰖙⠀"
-  elif [[ $trd_time -ge "15" && $trd_time -le "19" ]]; then res="󰖛⠀"
-  elif [[ $trd_time -ge "19" && $trd_time -le "24" ]]; then res="⠀"
-  elif [[ $trd_time -eq "24" || $trd_time -le "4"  ]]; then res="󰖔⠀"
+  res='' 
+  if [[ $time -ge "4" && $time -le "7" ]]; then res="󰖜⠀"
+  elif [[ $time -ge "7" && $time -le "9" ]]; then res="⠀"
+  elif [[ $time -ge "9" && $time -le "15" ]]; then res=" 󰖙⠀"
+  elif [[ $time -ge "15" && $time -le "19" ]]; then res="󰖛⠀"
+  elif [[ $time -ge "19" && $time -le "24" ]]; then res="⠀"
+  elif [[ $time -eq "24" || $time -le "4"  ]]; then res="󰖔⠀"
   fi
   printf $res
 }
