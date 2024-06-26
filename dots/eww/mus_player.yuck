@@ -1,7 +1,9 @@
 (defvar change_ctrl_box true)
+(defvar is_looping false)
 ;;music polls
 (defpoll status :interval "1s" `playerctl status`)
-;;(defpoll title :interval "1s" "sh mus.sh --title")
+(defvar loop `sh ./scripts/mus_func.sh -l`)
+;;(defpoll exit_loop :interval "1s" "sh ./scripts/mus_func.sh -xl")
 (defpoll artist :interval "1s" "sh mus.sh --artist_only")
 (defpoll full_title :interval "1s" `playerctl metadata --format '{{ title }}'`)
 
@@ -24,14 +26,6 @@
             :image-height 100 :path img_cover
       )
     )
-      ;;(box :vexpand false :halign "center" :class "artcover"
-      ;;     :style "
-       ;;    background-image:{img_cover};
-        ;;   background-repeat:no-repeat;
-       ;;    background-size:80px 50px;
-       ;;    background-position:center"
-     ;; )
-    ;;)
     (box :class "main" :orientation "v" :space-evenly false 
         (label :class "m_width" :orientation "v" :text " ")
         (box :class "mus-title-and-artist" :hexpand false :orientation "v"
@@ -54,8 +48,7 @@
                 )
           (label :class "dur"  :text duration )
         )
-        
-       
+         
       (box  :class "controlling-box" :orientation "h" 
             :hexpand false :space-evenly false 
             :halign "center"
@@ -66,7 +59,8 @@
             (box :orientation "h" :space-evenly false 
               :style "border-radius:8px;background-color:#1f0f01;"
               (button :class "prev" :onclick `playerctl previous` "⠀󰒮")
-              (button :class "stepfb" :onclick `playerctl position "${duration_second - 5}"` "󰓕")
+              (button :class "stepfb" 
+              :onclick `playerctl position "${duration_second - 5}"` "󰓕")
               (button :class "active" :onclick `playerctl play-pause`{ status == "Playing" ? "": ""})
               (button :class "stepfb" :onclick `playerctl position "${duration_second + 5}"` "󰓗")
               (button :class "next" :onclick `playerctl next` "󰒭 ") 
@@ -74,12 +68,12 @@
           )
            (revealer
             :reveal "${!change_ctrl_box}"
-            :transition "slideleft"
+            :transition "slideright"
             :duration "250ms"
             (box :orientation "h" :space-evenly false :style "border-radius:8px;background-color:#1f0f01;"
-              (button :class "stepfb" :next `playerctl suffle Toggle` " 󰒟")
-              (button :class "active" :onclick `playerctl loop Track` "󰑙")
-              (button :class "stepfb" :next `playerctl loop None` "󰶕 ")
+              (button :class "stepfb" :onclick `playerctl suffle Toggle` " 󰒟")
+              (button :class "active" :onclick loop "󰑙")
+              (button :class "stepfb" :onclick `sh ./scripts/mus_func.sh -xl` "󰶕 ")
 
             )
            )
