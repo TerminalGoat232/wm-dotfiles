@@ -1,0 +1,143 @@
+/**
+ * ROFI Color theme
+ * User: terminalgoat
+ */
+@import "~/.cache/wal/colors-rofi-dark.rasi"
+* {
+    brown: #2b1600;
+    text-color:  #ffcda0;
+    background-color:  rgba(0,0,0,0);
+    dark: @background;
+    lightred:    #cc5533;
+    lightgreen:  #88cc22;
+    lightyellow:     #ffa75d;
+    lightblue:     #87ceeb;
+    lightmagenta:     #996600;
+    lightcyan:     #b0c4de;
+    lightwhite:     #ddccbb;
+    //highlight:     bold #ffffff;
+}
+configuration{
+  combi-modi:"⏻:~/.config/rofi/poweroption.sh -s,:~/.config/rofi/poweroption.sh -r, :~/.config/rofi/poweroption.sh -t";
+  modi: "combi,window";
+  show-icons: true;
+  display-window: " "; 
+  display-drun: "󰘔  ";
+  display-combi:"⏻ ";
+  me-accept-entry: "MousePrimary";
+  me-select-entry: "MouseSecondary";
+  drun-display-format:"{name}";
+}
+window {
+    orientation: horizontal;
+    height:   40%;
+    width: 40em;
+    location: center;
+    anchor:   none; 
+    border:  0px 0px 0px 0px;
+    text-color: @active-background;
+    spacing:1em;
+    children: [ctnr-1,mainbox];
+}
+mainbox {
+    orientation: vertical;
+    text-color:@foreground;
+    expand: true;
+    background-color: @background;
+    spacing: 2em;
+}
+/* containers */
+ctnr-1{
+  spacing:1em;
+  orientation: vertical;
+  children: [img];
+}
+
+img {
+  orientation: vertical;
+  border-radius:5px;
+  background-image: url("~/Desktop/cv.png", height);
+  width:10em;
+  spacing: 2em;
+  padding:20px;
+  children: [mode-switcher];
+}
+/* mode switcher */
+mode-switcher {
+  spacing: 0.5em;
+  enabled: true;
+  background-color: rgba(0,0,0,0);
+}
+button {
+  padding: 10px;
+  border-radius:5px;
+  background-color:@brown;
+  text-color: @selected-active-background;
+  cursor: pointer;
+}
+button selected {
+    background-color: @selected-urgent-background;
+    text-color: @brown;
+}
+inputbar {
+    enabled: true;
+    background-color: @brown;
+    text-color: @active-background;
+    padding:15px;
+    border-radius:8px;
+}
+textbox-prompt-colon {
+    enabled: true;
+    expand:false;
+    str:" ";
+    background-color: inherit;
+    text-color: inherit;
+}
+listview {
+    padding: 0em 1.2em 2em 1em;
+    dynamic: true;
+    spacing:0.4em;
+    lines: 2;
+}
+element-text {
+    background-color: inherit;
+    text-color:       @lightyellow;
+}
+element-text selected {
+  text-color: inherit;
+
+}
+element selected normal {
+    border-radius:5px;
+    padding:2em 1em 1em 1em;
+    background-color: @selected-urgent-background;
+    text-color:@background;    
+}
+element normal active {
+    text-color: @lightblue;
+}
+element normal urgent {
+    text-color: @lightred;
+}
+element alternate active {
+    text-color: @lightred;
+}
+element alternate urgent {
+    text-color: @lightred;
+}
+element selected active { 
+    border-radius:5px;
+    background-color: @lightred;
+    text-color: @dark;
+}
+element selected urgent {
+    background-color: @lightred;
+    text-color: @dark;
+}
+error-message {
+    expand: true;
+    background-color: red;
+    border-color: darkred;
+    border: 2px;
+    padding: 1em;
+}
