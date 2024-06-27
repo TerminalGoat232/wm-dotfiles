@@ -4,48 +4,26 @@
  */
 @import "~/.cache/wal/colors-rofi-dark.rasi"
 * {
-    active-background: #B98820;
-    active-foreground: @foreground;
-    normal-background: @background;
-    normal-foreground: @foreground;
-    urgent-background: #E66D13;
-    urgent-foreground: @foreground;
-
-    alternate-active-background: @background;
-    alternate-active-foreground: @foreground;
-    alternate-normal-background: @background;
-    alternate-normal-foreground: @foreground;
-    alternate-urgent-background: @background;
-    alternate-urgent-foreground: @foreground;
-
-    selected-active-background: #E66D13;
-    selected-active-foreground: @foreground;
-    selected-normal-background: #B98820;
-    selected-normal-foreground: @foreground;
-    selected-urgent-background: #CF830E;
-    selected-urgent-foreground: @foreground;
-
-    background-color: @background;
-
     brown: #2b1600;
     text-color:  #ffcda0;
-    //background-color:  rgba(0,0,0,0);
+    background-color:  rgba(0,0,0,0);
     dark: @background;
     lightred:    #cc5533;
     lightgreen:  #88cc22;
     lightyellow:     #ffa75d;
     lightblue:     #87ceeb;
-    lightmagenta:     #996600;
+    grey:     #996600;
     lightcyan:     #b0c4de;
     lightwhite:     #ddccbb;
     //highlight:     bold #ffffff;
 }
 configuration{
   combi-modi:"⏻:~/.config/rofi/poweroption.sh -s,:~/.config/rofi/poweroption.sh -r, :~/.config/rofi/poweroption.sh -t";
-  modi: "combi,window";
+  modi: "combi,window,filebrowser";
   show-icons: true;
+  display-filebrowser:" ";
   display-window: " "; 
-  display-drun: "󰘔  ";
+  display-drun: "󰘔 ";
   display-combi:"⏻ ";
   me-accept-entry: "MousePrimary";
   me-select-entry: "MouseSecondary";
@@ -57,7 +35,6 @@ window {
     width: 40em;
     location: center;
     anchor:   none; 
-    border:  0px 0px 0px 0px;
     text-color: @active-background;
     spacing:1em;
     children: [ctnr-1,mainbox];
@@ -79,7 +56,7 @@ ctnr-1{
 img {
   orientation: vertical;
   border-radius:5px;
-  background-image: url("~/Desktop/cv.png", height);
+  background-image: url("~/Desktop/cv.png",height);
   width:10em;
   spacing: 2em;
   padding:20px;
@@ -87,13 +64,13 @@ img {
 }
 /* mode switcher */
 mode-switcher {
-  spacing: 0.5em;
+  spacing: 1.8em;
   enabled: true;
   background-color: rgba(0,0,0,0);
 }
 button {
-  padding: 10px;
-  border-radius:5px;
+  padding: 20px;
+  border-radius:2em;
   background-color:@brown;
   text-color: @selected-active-background;
   cursor: pointer;
@@ -108,6 +85,12 @@ inputbar {
     text-color: @active-background;
     padding:15px;
     border-radius:8px;
+    children: [textbox-prompt-colon,entry];
+}
+entry{
+  text-color: @grey;
+  placeholder:"idk type smthing...";
+  background-color: inherit;
 }
 textbox-prompt-colon {
     enabled: true;
@@ -117,10 +100,9 @@ textbox-prompt-colon {
     text-color: inherit;
 }
 listview {
-    padding: 0em 1.2em 2em 1em;
+    padding: 0em 0.5em 1em 1em;
     dynamic: true;
-    spacing:0.4em;
-    lines: 2;
+    spacing:0.5em;
 }
 element-text {
     background-color: inherit;
