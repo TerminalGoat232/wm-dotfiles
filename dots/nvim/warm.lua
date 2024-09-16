@@ -1,6 +1,6 @@
 -- Thanks to https://github.com/savq/melange 
 -- This is a modified version of it
-
+-- ~/.local/share/nvim/lazy/base46/lua/base46
 local M = {}
 local color0  = "#1e1000"
 local color1  = "#E66D13"
