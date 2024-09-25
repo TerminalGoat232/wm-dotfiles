@@ -2,7 +2,8 @@
  * ROFI Color theme
  * User: terminalgoat
  */
-@import "~/.cache/wal/colors-rofi-dark.rasi"
+//@import "~/.cache/wal/colors-rofi-dark.rasi"
+@import "clsch.rasi"
 * {
     brown: #2b1600;
     text-color:  #ffcda0;
@@ -18,7 +19,7 @@
     //highlight:     bold #ffffff;
 }
 configuration{
-  combi-modi:"⏻:~/.config/rofi/poweroption.sh -s,:~/.config/rofi/poweroption.sh -r, :~/.config/rofi/poweroption.sh -t";
+  combi-modi:"⏻:~/.config/rofi/poweroption.sh -s,:~/.config/rofi/poweroption.sh -r,󰒲 :~/.config/rofi/poweroption.sh -t";
   modi: "combi,window,filebrowser";
   show-icons: true;
   display-filebrowser:" ";
@@ -36,6 +37,7 @@ window {
     location: center;
     anchor:   none; 
     text-color: @active-background;
+    //background-color:@background;
     spacing:1em;
     children: [ctnr-1,mainbox];
 }
@@ -43,7 +45,7 @@ mainbox {
     orientation: vertical;
     text-color:@foreground;
     expand: true;
-    background-color: @background;
+    background-color: #2d1c0a;
     spacing: 2em;
 }
 /* containers */
@@ -56,7 +58,7 @@ ctnr-1{
 img {
   orientation: vertical;
   border-radius:5px;
-  background-image: url("~/Desktop/cv.png",height);
+  background-image: url("~/.config/cv.png",height);
   width:10em;
   spacing: 2em;
   padding:20px;
