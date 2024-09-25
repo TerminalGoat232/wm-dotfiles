@@ -3,7 +3,7 @@
 GRUB_DEFAULT=0
 GRUB_TIMEOUT=0
 GRUB_DISTRIBUTOR="Arch"
-GRUB_CMDLINE_LINUX_DEFAULT="resume=UUID=a2ec1748-01b8-40ee-92a4-ba3637e7598c loglevel=0 quiet nowatchdog mitigations=off rd.systemd.show_status=false "
+GRUB_CMDLINE_LINUX_DEFAULT="resume=UUID=<swap_uuid> loglevel=0 quiet nowatchdog mitigations=off rd.systemd.show_status=false "
 GRUB_CMDLINE_LINUX=""
 
 # Preload both GPT and MBR modules so that they are not missed
