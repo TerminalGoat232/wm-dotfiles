@@ -67,7 +67,7 @@ exec_always git_hub/xborder/xborders -c git_hub/xborder/example_config.json
 exec_always python3 ~/home/terminalgoat/.config/i3/set_volume.py
 
 #exec_always autorandr clone-largest && xrandr --output eDP-1 --off
-exec_always xrandr --output DP-3 --primary
+exec_always xrandr --output DP-3 --primary 
 bindsym $mod+Shift+q kill
 #exec_always sh autotiling.sh -w 1 3 5 7 9
 #exec_always sh /home/terminalgoat/.config/eww/dashboard_workspace.sh
@@ -81,10 +81,10 @@ gaps inner 15
 gaps outer 0
 for_window [class=".*"] border pixel 3
 # change focus
-bindsym $mod+k focus left
-bindsym $mod+l focus down
-bindsym $mod+o focus up
-bindsym $mod+semicolon focus right
+bindsym $mod+l focus left
+bindsym $mod+semicolon focus down
+bindsym $mod+p focus up
+bindsym $mod+apostrophe focus right
 
 # move focused window
 bindsym $mod+Left move left
