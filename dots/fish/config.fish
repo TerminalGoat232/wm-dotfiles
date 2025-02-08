@@ -25,7 +25,15 @@ alias qa='killall'
 alias rmpkg='yay -Rns'
 alias aged='./arch-age'
 alias c='clear'
-alias cd='cd | ls'
 alias pwdcp='pwd | tr -d "\n" | xclip -sel c'
 alias ...="cd ../.."
 set PATH "/home/terminalgoat/.local/bin:$PATH"
+
+function cd --argument dir
+    if [ "dir" = "" ]
+        builtin cd $HOME
+    else
+        builtin cd $dir
+    end
+    ls -a
+end
