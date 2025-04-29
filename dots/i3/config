@@ -50,7 +50,8 @@ bindsym $mod+Return exec alacritty
 bindsym $mod+d exec --no-startup-id rofi -show drun -show combi -icon-theme "ePapirus" -show-icons -display-drun " "
 bindsym Print exec maim -s -u | xclip -selection clipboard -t image/png -i
 bindsym $mod+Print exec maim -u | xclip -selection clipboard -t image/png -i
-bindsym $mod+Shift+f exec firefox 
+#bindsym $mod+Shift+f exec firefox 
+bindsym $mod+Shift+v exec vivaldi
 bindsym $mod+Shift+w exec xgamma -rgamma 1.33 -ggamma 1.005 -bgamma .8
 bindsym $mod+Shift+n exec xgamma -rgamma 1 -ggamma 1 -bgamma 1
 #stuff
@@ -59,12 +60,12 @@ exec_always ibus-daemon -drx
 exec_always i3-auto-tiling
 exec_always feh --bg-fill ~/.config/cv.png
 exec_always picom --no-use-damage 
-exec_always polybar -q
+exec_always polybar -qcd
 #exec_always xgamma -rgamma 1.33 -ggamma 1.005 -bgamma.8
-exec_always tint2
-exec_always pasystray
-exec_always git_hub/xborder/xborders -c git_hub/xborder/example_config.json
-exec_always python3 ~/home/terminalgoat/.config/i3/set_volume.py
+#exec_always tint2
+#exec_always pasystray
+#exec_always git_hub/xborder/xborders -c git_hub/xborder/example_config.json
+#exec_always python3 ~/home/terminalgoat/.config/i3/set_volume.py
 
 #exec_always autorandr clone-largest && xrandr --output eDP-1 --off
 exec_always xrandr --output DP-3 --primary 
