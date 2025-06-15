@@ -18,6 +18,8 @@ alias pacstat='yay -Ps'
 alias ccache='sudo rm -rf /var/cache/pacman/pkg/*'
 alias clock='tty-clock -s -c 1'
 alias neofetch='neofetch --ascii_distro arch_small'
+alias ff='fastfetch'
+alias add_kernel='sudo grub-mkconfig -o /boot/grub/grub.cfg'
 alias cya=reboot
 alias kys='shutdown now'
 alias kleww='killall eww'
@@ -29,7 +31,7 @@ alias pwdcp='pwd | tr -d "\n" | xclip -sel c'
 alias ...="cd ../.."
 set PATH "/home/terminalgoat/.local/bin:$PATH"
 
-function cd --argument dir
+function cs --argument dir
     if [ "dir" = "" ]
         builtin cd $HOME
     else
