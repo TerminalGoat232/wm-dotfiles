@@ -1,7 +1,7 @@
 #!/bin/bash
-region='thua-thien-thuy-xuan'
+region='thua-thien-thuan-hoa'
 data_source=`curl -Z "https://wttr.in/{$region}?format=%t+%f+%c+%h+%w+%P+%u+%m+%p" 2>/dev/null`
-time=$(date +%H)
+time=$(date +%-H)
 dat_list=($data_source)
  
 #some notation
@@ -52,7 +52,7 @@ time_session(){
   res='' 
   if [[ $time -ge "4" && $time -le "7" ]]; then res="󰖜⠀"
   elif [[ $time -ge "7" && $time -le "9" ]]; then res="⠀"
-  elif [[ $time -ge "9" && $time -le "15" ]]; then res=" 󰖙⠀"
+  elif [[ $time -ge "09" && $time -le "15" ]]; then res=" 󰖙⠀"
   elif [[ $time -ge "15" && $time -le "19" ]]; then res="󰖛⠀"
   elif [[ $time -ge "19" && $time -le "24" ]]; then res="⠀"
   elif [[ $time -eq "24" || $time -le "4"  ]]; then res="󰖔⠀"
@@ -60,7 +60,7 @@ time_session(){
   printf $res
 }
 #echo $data_source
-case $1 in  
+case $1 in
   "-t") real_temp ;;
   "-T") feel_temp ;;
   "-w") weather_cond ;;
@@ -75,5 +75,4 @@ case $1 in
   "-b") a= time_session ; b= weather_cond 
         echo $a $b ;;
 esac
-
 
