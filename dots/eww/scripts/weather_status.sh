@@ -4,17 +4,30 @@ data_source=`curl -Z "https://wttr.in/{$region}?format=%t+%f+%c+%h+%w+%P+%u+%m+%
 time=$(date +%-H)
 dat_list=($data_source)
  
-#some notation
-# --- $1  $2   $3      $4     $5    $6    $7  $8   $9  ---
-#     rel feel weather humid  wind  atm   uv  moon precip
-real_temp(){
-  #echo $(echo $data_source | awk '{print $1}')
-  echo ${dat_list[0]}
+# Some notation for each value in dat_list[i]
+#  i   |     1         2       3       4     |
+# data | real_temp feel_temp weather humid   |
+#  __  |     5       6      7     8    9     |
+#  __  |   wind   pressure  uv  moon precip  |
+
+check4Digits(){ 
+  [[ "$1" =~ [0-9] ]] && 
+    echo "true" || echo "false"
 }
+
+real_temp(){
+  has_digits=$(check4Digits ${dat_list[0]})
+  if [[ "$has_digits" == "true" ]]; then
+    echo ${dat_list[0]}
+  else 
+    echo "OwO?"
+  fi
+}
+
 feel_temp(){
-  #echo $(echo $data_source | awk '{print $2}')
   echo ${dat_list[1]}
 }
+
 weather_cond(){
   wther_icons="⛅☁🌦⛈🌨🌩🌫🌧☀"
   wther_icons_replacement="󰅟󰙾󰼶󰖓"
@@ -52,7 +65,7 @@ time_session(){
   res='' 
   if [[ $time -ge "4" && $time -le "7" ]]; then res="󰖜⠀"
   elif [[ $time -ge "7" && $time -le "9" ]]; then res="⠀"
-  elif [[ $time -ge "09" && $time -le "15" ]]; then res=" 󰖙⠀"
+  elif [[ $time -ge "9" && $time -le "15" ]]; then res=" 󰖙⠀"
   elif [[ $time -ge "15" && $time -le "19" ]]; then res="󰖛⠀"
   elif [[ $time -ge "19" && $time -le "24" ]]; then res="⠀"
   elif [[ $time -eq "24" || $time -le "4"  ]]; then res="󰖔⠀"
