@@ -1,16 +1,4 @@
 (defvar rev_fu_inf false)
-;;(defvar eww "eww -c $HOME/.config/eww")
-;;(deflisten air_cond "python3 ~/.config/polybar/air.py")
-;;(deflisten humidity "python3 ~/.config/polybar/hum.py")
-;;(deflisten uv_i "python3 ~/.config/polybar/uv.py")
-;;(deflisten wind_cond "python3 ~/.config/polybar/wind.py")
-;;(deflisten temp "python3 ~/.config/polybar/atemp.py")
-;;(deflisten rtemp "python3 ~/.config/polybar/rtemp.py")
-;;(deflisten wther_ic "python3 ~/.config/polybar/weather.py")
-;;(deflisten moon_phase "python3 ~/.config/polybar/moon_phase.py")
-;;(deflisten delta_temp "python3 ~/.config/polybar/delta_temp.py")
-;;(deflisten precipitation "python3 ~/.config/polybar/precip.py")
-
 (deflisten air_cond "sh ~/.config/eww/scripts/weather_status.sh -a")
 (deflisten humidity "sh ~/.config/eww/scripts/weather_status.sh -h")
 (deflisten uv_i "sh ~/.config/eww/scripts/weather_status.sh -u")
@@ -18,7 +6,6 @@
 (deflisten temp "sh ~/.config/eww/scripts/weather_status.sh -t")
 (deflisten rtemp "sh ~/.config/eww/scripts/weather_status.sh -T")
 (deflisten wther_ic "sh ~/.config/eww/scripts/weather_status.sh -b")
-(deflisten time_session "sh ~/.config/eww/scripts/weather_status.sh -s")
 (deflisten moon_phase "sh ~/.config/eww/scripts/weather_status.sh -m")
 (deflisten delta_temp "sh ~/.config/eww/scripts/weather_status.sh -d")
 (deflisten precipitation "sh ~/.config/eww/scripts/weather_status.sh -p")
@@ -27,10 +14,18 @@
 (defwidget temp_f []
      (box :class "wther_in4" :space-evenly false :orientation "h"
           
-        (box :class "info1" :orientation "v" :vexpand false :hexpand false :space-evenly false
+        (box 
+          :class "info1" :orientation "v" 
+          :vexpand false :hexpand false 
+          :space-evenly false
           (box :class "cf0" :orientation "v"
-            (label :class "wther_ic" :halign "center" :hexpand false :vexpand false :space-evenly false :text "${wther_ic}")
-          )
+            (
+             label :class "wther_ic" 
+              :halign "center" 
+              :vexpand false
+              :space-evenly false 
+              :text "${wther_ic}" )
+            )
           (box :class "cf1" :orientation "h" :vexpand false :hexpand false :space-evenly false 
             (label :class "air_cond" :space-evenly false :text "${air_cond}")
             (label :class "humidity" :space-evenly false :text "${humidity}")
@@ -64,7 +59,14 @@
                       (label :class "t2" :space-evenly false :text "⠀Feel ")
                      )
                   )
-                  (box :orientation "v" :space-evenly false :vexpand false :hexpand false :valign "end" :halign "start"
+                  (box 
+                    :orientation "v" 
+                    :space-evenly false 
+                    :vexpand false 
+                    :hexpand false 
+                    :valign "end" 
+                    :halign "start"
+
                     (box :class "plc-h" :orientation "h" :vexpand "false" :hexpand false :space-evenly false
                       (revealer
                         :reveal "${!rev_fu_inf}"
@@ -83,7 +85,14 @@
                         )
                       )
                     )
-                    (box :class "bx-etc" :orientation "h" :hexpand false :vexpand false :space-evenly false :valign "center"
+                    (box 
+                      :class "bx-etc" 
+                      :orientation "h" 
+                      :hexpand false 
+                      :vexpand false 
+                      :space-evenly false 
+                      :valign "center"
+
                       (label  :class "moon_phase" :space-evenly false :halign "center" :text "${moon_phase}")  
                       (button  :class "btt_options" 
                       :onclick `eww open changeloc`"" )
