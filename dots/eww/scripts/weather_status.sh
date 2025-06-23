@@ -1,5 +1,5 @@
 #!/bin/bash
-region=''
+region='thua_thien_phuong_duc'
 data_source=`curl -Z "https://wttr.in/{$region}?format=%t+%f+%c+%h+%w+%P+%u+%m+%p" 2>/dev/null`
 time=$(date +%-H)
 dat_list=($data_source)
@@ -12,12 +12,12 @@ dat_list=($data_source)
 
 check4Digits(){ # <$1: STR> -> BOOL
   [[ "$1" =~ [0-9] ]] && 
-    echo "true" || echo "false"
+    echo 0 || echo 1
 }
 
-echoExpect(){ # <$1:STR $2:ERR_STR> -> STR
+echoExpect(){ # <$1:STR $2:ERR_STR $3:NO_INT> -> STR
   has_digits=$(check4Digits "$1")
-  if [[ "$has_digits" == "true" && ${#1} -ge 1 ]]; then
+  if [[ ($3 == "NO_INT" || $has_digits) && -n "$1" ]]; then
     echo "$1"
   else 
     echo "$2"
@@ -42,7 +42,7 @@ weather_cond(){
     i=0
     while [ $i -lt ${#wther_icons} ]; do
       if [[ "$k" == *${wther_icons:${i}:1}* ]]; then  
-        echo ${wther_icons_replacement:${i}:1}
+        printf ${wther_icons_replacement:${i}:1}
       fi
       i=$((i+1))
     done 
@@ -61,7 +61,7 @@ uv(){
   echoExpect "uv "${dat_list[6]} "n/a"
 }
 moon_phase(){
-  echoExpect ${dat_list[7]} "n/a"
+  echoExpect ${dat_list[7]} "n/a" "NO_INT"
 }
 precipitation(){
   echoExpect "   "${dat_list[8]} "n/a"
